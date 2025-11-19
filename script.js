@@ -1,87 +1,106 @@
-/* -----------------------------------------------------
-   1) TYPEWRITER MAIN MESSAGE
------------------------------------------------------- */
+/* ----------------------------------------
+   MAIN MESSAGES
+-----------------------------------------*/
 
-function revealMessage() {
-    const message = document.getElementById("message");
-    const text = "I wrote all this just to say… you mean more to me than you know. 💌";
+// First typewriter message
+const firstMessage = "I wrote all this just to say… you mean more to me than you know. 💌";
 
-    // Reveal box
-    message.classList.remove("hidden");
-    message.classList.add("show");
+let firstClickDone = false; // Tracks if we've shown the first message
 
-    message.textContent = "";
+// Compliments list (30 messages)
+const compliments = [
+    "You are my home.",
+    "Your smile is my favorite place.",
+    "You make life softer. 🌸",
+    "You make everything feel lighter.",
+    "You’re a blessing I didn’t expect. 💗",
+    "You make bad days disappear.",
+    "Your laugh is everything. 😭❤️",
+    "You are sunshine in human form. ☀️",
+    "I adore your heart.",
+    "You don’t realize how amazing you are.",
+    "You make me want to be better.",
+    "You make everything warmer. 🌷",
+    "Your presence feels like peace.",
+    "You have the sweetest soul.",
+    "You’re someone I never want to lose.",
+    "You make silence comfortable. 🤍",
+    "You are loved more than you know.",
+    "Your energy is unmatched. ✨",
+    "You make the world feel softer.",
+    "You deserve every good thing.",
+    "You make life feel romantic. 💞",
+    "You’re my favorite person.",
+    "You’re beautiful without even trying.",
+    "You feel like destiny.",
+    "You make my heart rest.",
+    "You're the cutest human alive.",
+    "Every part of you is special.",
+    "You're my safe place."
+];
+
+
+
+/* ----------------------------------------
+   HEART CLICK HANDLER
+-----------------------------------------*/
+
+function heartClicked() {
+    if (!firstClickDone) {
+        firstClickDone = true;
+        typeWriter(firstMessage);
+    } else {
+        showCompliment();
+    }
+}
+
+
+
+/* ----------------------------------------
+   TYPEWRITER EFFECT (first message only)
+-----------------------------------------*/
+
+function typeWriter(text) {
+    const msg = document.getElementById("message");
+    msg.textContent = "";
+    msg.classList.remove("show");
+
     let i = 0;
 
-    function typeWriter() {
+    function write() {
         if (i < text.length) {
-            message.textContent += text.charAt(i);
+            msg.textContent += text.charAt(i);
             i++;
-            setTimeout(typeWriter, 40);
+            setTimeout(write, 40);
         } else {
-            // After typewriter ends → show button
-            revealComplimentButton();
+            msg.classList.add("show");
         }
     }
 
-    typeWriter();
-}
-
-function revealComplimentButton() {
-    document.getElementById("complimentBtn").classList.remove("hidden");
+    write();
 }
 
 
 
-/* -----------------------------------------------------
-   2) RANDOM COMPLIMENT GENERATOR (28 compliments)
------------------------------------------------------- */
-
-const compliments = [
-    "You are my sunshine. ✨",
-    "You’re the love of my life. 💗",
-    "Your smile is literally my favorite thing. 😊",
-    "Thank you for being the best. 💕",
-    "You are so swaggggyyy. 🌸",
-    "Pressure makes diamionds so don't give up!!. 💎",
-    "You are my home.",
-    "You make the world feel warmer. ☀️",
-    "You will always be my girl. 💕",
-    "Your laugh is the cuteest ever. ❤️",
-    "You make me want to be better. 🌷",
-    "You’re beautiful without trying. 💖",
-    "You make me feel safe. 🫶",
-    "Your energy is the best. 🔥",
-    "You make boring days feel special. ✨",
-    "You’re my favorite person to be around. 💗",
-    "You have the cutest voice ever.",
-    "You’re way more amazing than you realize. 💞",
-    "You make everything better.",
-    "You’re someone I never want to lose. 💓",
-    "You’re the best part of my day. 🧸",
-    "You make even silence feel nice. 🤍",
-    "You’re adorable without even trying. 🥺",
-    "I will always be proud of you. ❤️",
-    "You make the world feel less heavy. 🌤️",
-    "You’re the cutest person on this planet. 🌍💗",
-    "You are so special. ✨",
-    "You’re my comfort person. Always. 🤍"
-];
+/* ----------------------------------------
+   RANDOM COMPLIMENT (after first click)
+-----------------------------------------*/
 
 function showCompliment() {
-    const c = document.getElementById("compliment");
-    const random = compliments[Math.floor(Math.random() * compliments.length)];
+    const msg = document.getElementById("message");
 
-    c.classList.remove("hidden");
-    c.classList.add("show");
-    c.textContent = random;
+    const random = compliments[Math.floor(Math.random() * compliments.length)];
+    msg.textContent = random;
+
+    msg.classList.remove("show");
+    setTimeout(() => msg.classList.add("show"), 20);
 }
 
 
 
-/* -----------------------------------------------------
-   3) FLOATING HEART PARTICLES FOLLOW CURSOR
------------------------------------------------------- */
+/* ----------------------------------------
+   FLOATING HEART PARTICLES
+-----------------------------------------*/
 
 const canvas = document.getElementById("heartCanvas");
 const ctx = canvas.getContext("2d");

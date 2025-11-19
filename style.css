@@ -1,11 +1,10 @@
 body {
     margin: 0;
-    background: #fff0f6;
+    background: #ffe6f2;
     font-family: 'Arial', sans-serif;
     overflow: hidden;
 }
 
-/* Canvas background hearts */
 #heartCanvas {
     position: fixed;
     top: 0;
@@ -15,68 +14,27 @@ body {
     pointer-events: none;
 }
 
-/* Center container */
 .container {
     text-align: center;
     margin-top: 120px;
 }
 
-/* Big clickable heart */
 .big-heart {
     font-size: 60px;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
-
 .big-heart:hover {
-    transform: scale(1.2);
+    transform: scale(1.15);
 }
 
-/* First message */
 #message {
     font-size: 22px;
     color: #cc0066;
-    margin-top: 20px;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-#message.show {
-    opacity: 1;
-}
-
-/* Compliment button */
-#complimentBtn {
-    margin-top: 20px;
-    padding: 10px 22px;
-    font-size: 16px;
-    background: #ff80b3;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-#complimentBtn:hover {
-    background: #ff4da6;
-    transform: scale(1.05);
-}
-
-/* Compliment text */
-.compliment-text {
-    margin-top: 15px;
-    font-size: 20px;
-    color: #d6006e;
+    margin-top: 25px;
     opacity: 0;
     transition: opacity 0.6s ease;
 }
-
-.compliment-text.show {
+#message.show {
     opacity: 1;
-}
-
-/* Utilities */
-.hidden {
-    display: none;
 }

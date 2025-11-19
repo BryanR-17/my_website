@@ -6,27 +6,17 @@
 </head>
 <body>
 
-    <!-- Floating hearts follow cursor -->
     <canvas id="heartCanvas"></canvas>
 
     <div class="container">
 
-        <!-- First click -->
-        <div class="big-heart" onclick="revealMessage()">💖</div>
+        <div class="big-heart" onclick="heartClicked()">💖</div>
 
-        <!-- First message -->
-        <p id="message" class="hidden"></p>
-
-        <!-- Second click -->
-        <button id="complimentBtn" class="hidden" onclick="showCompliment()">
-            Click me again 💕
-        </button>
-
-        <!-- Compliments appear here -->
-        <p id="compliment" class="compliment-text hidden"></p>
+        <p id="message"></p>
 
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
+
