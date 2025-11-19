@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For You 💖</title>
 
-    <!-- REAL CURSIVE FONT -->
+    <!-- Cursive font for Alyssa -->
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
@@ -13,52 +13,45 @@
 
 <body>
 
-    <!-- FLOATING BLACK HEARTS BACKGROUND -->
+    <!-- FLOATING HEARTS -->
     <div id="floating-hearts"></div>
 
-    <!-- CURSOR TRAIL HEARTS -->
+    <!-- CURSOR HEARTS -->
     <div id="cursor-hearts"></div>
 
-    <!-- HEART BUTTON -->
+    <!-- MAIN HEART -->
     <div class="heart" onclick="handleClick()">
         💖
         <span class="click-hint">click me</span>
     </div>
 
-    <!-- NAME (NOW UNDER THE HEART) -->
+    <!-- NAME -->
     <h1 id="name" class="hidden-name"></h1>
 
     <!-- MESSAGE -->
     <p id="message" class="message"></p>
 
-    <!-- CAT VIDEO -->
+    <!-- CAT VIDEO POPUP -->
     <div id="cat-popup" class="cat-popup">
         <video id="cat-video" width="250" playsinline>
             <source src="cat.mp4" type="video/mp4">
         </video>
     </div>
 
-    <script src="script.js"></script>
-    
-    <!-- CAT CAFÉ MAZE OVERLAY (HIDDEN BY DEFAULT) -->
+    <!-- CAT CAFÉ MAZE -->
     <div id="maze-overlay" class="maze-overlay">
-      <div class="maze-box">
-        <h2 class="maze-title">cat café maze 🐈☕</h2>
-        <div id="maze-grid"></div>
+        <div class="maze-box">
+            <h2 class="maze-title">cat café maze 🐈☕</h2>
+            <div id="maze-grid"></div>
 
-        <div class="maze-controls">
-          <button class="maze-btn" data-dir="up">⬆</button>
-          <div>
-            <button class="maze-btn" data-dir="left">⬅</button>
-            <button class="maze-btn" data-dir="down">⬇</button>
-            <button class="maze-btn" data-dir="right">➡</button>
-          </div>
-        </div>
+            <div class="maze-controls">
+                <button class="maze-btn" data-dir="up">⬆</button>
+                <div>
+                    <button class="maze-btn" data-dir="left">⬅</button>
+                    <button class="maze-btn" data-dir="down">⬇</button>
+                    <button class="maze-btn" data-dir="right">➡</button>
+                </div>
+            </div>
 
-        <p id="maze-message" class="maze-message"></p>
-        <button id="maze-close" class="maze-close">close</button>
-      </div>
-    </div>
-
-</body>
-</html>
+            <p id="maze-message" class="maze-message"></p>
+            <button id="maze-close" class

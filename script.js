@@ -1,5 +1,9 @@
+/* ========================================= */
+/*  HEART + NAME + COMPLIMENT + CAT VIDEO    */
+/* ========================================= */
+
 let count = 0;
-const nameText = "Alyssa";
+const nameText = "Alyssa 💕";
 
 const firstMessage =
     "I wrote all this just to say… you mean more to me than you know. 💌";
@@ -53,7 +57,7 @@ function handleClick() {
     }
 }
 
-/* LETTER BY LETTER EFFECT */
+/* LETTER BY LETTER NAME */
 function animateName(text) {
     const nameBox = document.getElementById("name");
     nameBox.innerHTML = "";
@@ -94,7 +98,7 @@ function showCatVideo() {
     setTimeout(() => {
         popup.classList.remove("show");
         video.pause();
-    }, 6500);
+    }, 6500); // 8 seconds
 }
 
 /* FLOATING HEARTS */
@@ -125,7 +129,9 @@ document.addEventListener("mousemove", (e) => {
 });
 
 
-/* ============ CAT CAFÉ MAZE LOGIC ============ */
+/* ========================================= */
+/*                CAT CAFÉ MAZE              */
+/* ========================================= */
 
 let mazeTriggered = false;
 let mazeVisible = false;
@@ -133,88 +139,62 @@ let mazeVisible = false;
 const mazeRows = 20;
 const mazeCols = 20;
 
-// start and goal positions in the grid
 const startPos = { row: 1, col: 1 };
 const goalPos  = { row: 18, col: 18 };
 
-// build maze layout: 1 = wall, 0 = path
 let mazeLayout = Array.from({ length: mazeRows }, () =>
     Array(mazeCols).fill(1)
 );
 
-// carve a long, winding path (challenging but solvable)
+/* LONG WINDING MAZE PATH */
 const pathCells = [
-    // horizontal snakes across the grid
-    // row 1
     ...Array.from({ length: 18 }, (_, i) => ({ row: 1, col: 1 + i })),
-    // down
     { row: 2, col: 18 }, { row: 3, col: 18 }, { row: 4, col: 18 },
-    // back left row 4
     ...Array.from({ length: 16 }, (_, i) => ({ row: 4, col: 17 - i })),
-    // down
     { row: 5, col: 2 }, { row: 6, col: 2 },
-    // row 6 right
     ...Array.from({ length: 15 }, (_, i) => ({ row: 6, col: 2 + i })),
-    // down
     { row: 7, col: 17 }, { row: 8, col: 17 },
-    // row 8 left
     ...Array.from({ length: 14 }, (_, i) => ({ row: 8, col: 16 - i })),
-    // down
     { row: 9, col: 3 }, { row: 10, col: 3 },
-    // row 10 right
     ...Array.from({ length: 13 }, (_, i) => ({ row: 10, col: 3 + i })),
-    // down
     { row: 11, col: 15 }, { row: 12, col: 15 },
-    // row 12 left
     ...Array.from({ length: 12 }, (_, i) => ({ row: 12, col: 14 - i })),
-    // down
     { row: 13, col: 3 }, { row: 14, col: 3 },
-    // row 14 right
     ...Array.from({ length: 13 }, (_, i) => ({ row: 14, col: 3 + i })),
-    // down
     { row: 15, col: 15 }, { row: 16, col: 15 },
-    // to goal row 18 col 18
-    { row: 17, col: 15 }, { row: 18, col: 15 }, { row: 18, col: 16 },
-    { row: 18, col: 17 }, { row: 18, col: 18 }
+    { row: 17, col: 15 }, { row: 18, col: 15 },
+    { row: 18, col: 16 }, { row: 18, col: 17 }, { row: 18, col: 18 }
 ];
 
-// carve the path into the wall grid
 pathCells.forEach(c => {
     if (c.row >= 0 && c.row < mazeRows && c.col >= 0 && c.col < mazeCols) {
         mazeLayout[c.row][c.col] = 0;
     }
 });
 
-// player position
 let playerPos = { ...startPos };
 
 function openMaze() {
     const overlay = document.getElementById("maze-overlay");
-    const grid = document.getElementById("maze-grid");
-    const message = document.getElementById("maze-message");
-
+    document.getElementById("maze-message").textContent = "";
     playerPos = { ...startPos };
-    message.textContent = "";
-
     renderMaze();
-
     overlay.classList.add("show");
     mazeVisible = true;
 }
 
 function closeMaze() {
-    const overlay = document.getElementById("maze-overlay");
-    overlay.classList.remove("show");
+    document.getElementById("maze-overlay").classList.remove("show");
     mazeVisible = false;
 }
 
-// render the whole grid
 function renderMaze() {
     const grid = document.getElementById("maze-grid");
     grid.innerHTML = "";
 
     for (let r = 0; r < mazeRows; r++) {
         for (let c = 0; c < mazeCols; c++) {
+
             const cell = document.createElement("div");
             cell.classList.add("maze-cell");
 
@@ -237,55 +217,38 @@ function renderMaze() {
     }
 }
 
-// move the player
 function movePlayer(dr, dc) {
     if (!mazeVisible) return;
 
     const newRow = playerPos.row + dr;
     const newCol = playerPos.col + dc;
 
-    if (
-        newRow < 0 || newRow >= mazeRows ||
-        newCol < 0 || newCol >= mazeCols
-    ) return;
+    if (newRow < 0 || newRow >= mazeRows ||
+        newCol < 0 || newCol >= mazeCols) return;
 
-    if (mazeLayout[newRow][newCol] === 1) {
-        // wall, can't move
-        return;
-    }
+    if (mazeLayout[newRow][newCol] === 1) return;
 
     playerPos = { row: newRow, col: newCol };
     renderMaze();
 
     if (playerPos.row === goalPos.row && playerPos.col === goalPos.col) {
-        const msg = document.getElementById("maze-message");
-        msg.textContent = "you found your way to my heart <3";
-        setTimeout(() => {
-            closeMaze();
-        }, 2000);
+        document.getElementById("maze-message").textContent =
+            "you found your way to my heart <3";
+        setTimeout(closeMaze, 2000);
     }
 }
 
-// keyboard controls
+/* KEYBOARD CONTROLS */
 document.addEventListener("keydown", (e) => {
     if (!mazeVisible) return;
 
-    if (e.key === "ArrowUp") {
-        e.preventDefault();
-        movePlayer(-1, 0);
-    } else if (e.key === "ArrowDown") {
-        e.preventDefault();
-        movePlayer(1, 0);
-    } else if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        movePlayer(0, -1);
-    } else if (e.key === "ArrowRight") {
-        e.preventDefault();
-        movePlayer(0, 1);
-    }
+    if (e.key === "ArrowUp") movePlayer(-1, 0);
+    if (e.key === "ArrowDown") movePlayer(1, 0);
+    if (e.key === "ArrowLeft") movePlayer(0, -1);
+    if (e.key === "ArrowRight") movePlayer(0, 1);
 });
 
-// button controls (for phone)
+/* BUTTON CONTROLS */
 document.addEventListener("click", (e) => {
     if (e.target.classList.contains("maze-btn")) {
         const dir = e.target.getAttribute("data-dir");
@@ -296,27 +259,22 @@ document.addEventListener("click", (e) => {
     }
 });
 
-// close button
-document.getElementById("maze-close").addEventListener("click", () => {
-    closeMaze();
-});
+/* CLOSE BUTTON */
+document.getElementById("maze-close").addEventListener("click", closeMaze);
 
-/* BACKGROUND CLICK TRIGGER (ONE TIME ONLY) */
+/* BACKGROUND CLICK TRIGGER */
 document.addEventListener("click", (e) => {
     if (mazeTriggered) return;
 
-    // ignore clicks on UI elements
+    // avoid triggering if clicking UI elements
     if (
         e.target.closest(".heart") ||
         e.target.closest("#name") ||
         e.target.closest("#message") ||
         e.target.closest("#cat-popup") ||
         e.target.closest("#maze-overlay")
-    ) {
-        return;
-    }
+    ) return;
 
-    // first legit background click → open maze
     mazeTriggered = true;
     openMaze();
-}, true);
+});

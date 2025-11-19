@@ -26,7 +26,7 @@ body {
     opacity: 0.8;
 }
 
-/* NAME — NOW BELOW HEART + CURSIVE + BIGGER */
+/* NAME */
 .hidden-name {
     margin-top: 15px;
     font-size: 60px;
@@ -72,7 +72,6 @@ body {
     pointer-events: none;
     overflow: hidden;
 }
-
 .floating-heart {
     position: absolute;
     font-size: 20px;
@@ -95,16 +94,19 @@ body {
     from { opacity: 1; transform: translateY(0); }
     to { opacity: 0; transform: translateY(-25px); }
 }
-/* ============ CAT CAFÉ MAZE OVERLAY ============ */
+
+/* ========================================================= */
+/*                      CAT CAFÉ MAZE                       */
+/* ========================================================= */
 
 .maze-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    display: none; /* hidden until triggered */
+    background: rgba(0,0,0,0.4);
+    display: none;
     align-items: center;
     justify-content: center;
-    z-index: 50;
+    z-index: 200;
     backdrop-filter: blur(2px);
 }
 
@@ -113,7 +115,7 @@ body {
 }
 
 .maze-box {
-    background: #f7e3c8; /* latte-ish beige */
+    background: #f7e3c8;
     border-radius: 16px;
     padding: 16px 18px 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.25);
@@ -149,24 +151,23 @@ body {
     font-size: 12px;
 }
 
-/* walls + path colors (cat café theme) */
 .maze-wall {
-    background: #8b5a2b;       /* brown walls */
+    background: #8b5a2b;
 }
 
 .maze-path {
-    background: #fff7ee;       /* cream path */
+    background: #fff7ee;
 }
 
-/* player + goal */
 .maze-player {
     background: #ffe0c2;
 }
+
 .maze-goal {
     background: #ffe8cc;
 }
 
-/* controls under maze */
+/* Controls */
 .maze-controls {
     margin-top: 6px;
     display: flex;
@@ -189,7 +190,6 @@ body {
     transform: translateY(1px);
 }
 
-/* message + close button */
 .maze-message {
     margin-top: 8px;
     font-size: 14px;
