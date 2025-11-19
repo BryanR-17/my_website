@@ -5,20 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For You 💖</title>
     <link rel="stylesheet" href="style.css">
+
+    <!-- Pretty Cursive Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- Handwritten Name (HIDDEN) -->
-    <div id="name-container">
-        <!-- Elegant cursive SVG (Great Vibes style) -->
-        <svg id="alyssa-svg" viewBox="0 0 600 200">
-            <path id="alyssa-path"
-                d="M95 110 Q105 40 160 80 Q200 110 230 70 Q250 45 280 70 Q310 95 330 70 Q350 45 380 70 Q410 95 440 70 Q470 45 500 90"
-                fill="none" stroke="#b10077" stroke-width="6" 
-                stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    </div>
+    <!-- Her Name (HIDDEN until first click) -->
+    <div id="name" class="name hidden">Alyssa</div>
 
     <!-- HEART BUTTON -->
     <div class="heart" onclick="handleClick()">

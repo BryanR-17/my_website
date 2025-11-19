@@ -5,31 +5,35 @@ body {
     overflow-x: hidden;
 }
 
-/* HANDWRITTEN NAME */
-#name-container {
+/* NAME ANIMATION */
+.name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 75px;
+    color: #b10077;
+    letter-spacing: 3px;
     margin-top: 40px;
     opacity: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    transition: opacity 1.2s ease;
+    display: inline-block;
+    transition: opacity 1s ease;
 }
 
-#alyssa-svg {
-    width: 350px;
-    height: auto;
+/* each letter appears individually */
+.name span {
+    opacity: 0;
+    display: inline-block;
+    transform: translateY(10px);
+    animation: fadeLetter 0.6s forwards ease;
 }
 
-#alyssa-path {
-    stroke-dasharray: 800;
-    stroke-dashoffset: 800;
-    animation: none;
-}
-
-@keyframes writeName {
+@keyframes fadeLetter {
     to {
-        stroke-dashoffset: 0;
+        opacity: 1;
+        transform: translateY(0px);
     }
+}
+
+.hidden {
+    opacity: 0;
 }
 
 /* HEART */
@@ -40,7 +44,7 @@ body {
     position: relative;
     display: inline-block;
     transition: transform 0.2s ease;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .heart:hover {

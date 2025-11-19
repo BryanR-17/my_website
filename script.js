@@ -34,27 +34,38 @@ const messages = [
     "You're my safe place."
 ];
 
-// FIRST CLICK triggers name + message
+// turn "Alyssa" into spans for letter animation
+function formatName() {
+    const nameDiv = document.getElementById("name");
+    const nameText = "Alyssa";
+    nameDiv.innerHTML = "";
+
+    [...nameText].forEach((letter, i) => {
+        let span = document.createElement("span");
+        span.style.animationDelay = (i * 0.2) + "s";
+        span.textContent = letter;
+        nameDiv.appendChild(span);
+    });
+}
+
+formatName();
+
 function handleClick() {
     count++;
 
     let msg = document.getElementById("message");
 
-    // First click → special message + name animation
+    // FIRST CLICK → show name + first message
     if (count === 1) {
         msg.textContent = firstMessage;
 
-        // Fade in and write name
-        const nameBox = document.getElementById("name-container");
-        const path = document.getElementById("alyssa-path");
-
-        nameBox.style.opacity = "1";
-        path.style.animation = "writeName 3s ease forwards";
+        const nameDiv = document.getElementById("name");
+        nameDiv.classList.remove("hidden");
 
         return;
     }
 
-    // After first click → rotate compliments
+    // After first click → cycle compliments
     msg.textContent = messages[(count - 2) % messages.length];
 
     // Every 5 clicks → cat video
@@ -72,9 +83,10 @@ function showCatVideo() {
     video.muted = false;
     video.play();
 
-    // hide after full 8 seconds
+    // stay 8 seconds
     setTimeout(() => {
         popup.classList.remove("show");
         video.pause();
     }, 7000);
 }
+
