@@ -5,10 +5,8 @@ body {
     overflow: hidden;
 }
 
-/* All canvases */
-#bgHeartsCanvas,
-#heartCanvas,
-#sparkleCanvas {
+/* Canvas layers */
+#bgHeartsCanvas, #heartCanvas, #sparkleCanvas, #popCanvas {
     position: fixed;
     top: 0;
     left: 0;
@@ -17,39 +15,34 @@ body {
     pointer-events: none;
 }
 
-/* Order layers */
-#bgHeartsCanvas {
-    z-index: -2;
-}
-#heartCanvas {
-    z-index: -1;
-}
-#sparkleCanvas {
-    z-index: 1;
-}
+#bgHeartsCanvas { z-index: -3; }
+#heartCanvas { z-index: -2; }
+#sparkleCanvas { z-index: -1; }
+#popCanvas { z-index: 0; }
 
-/* Center layout */
+/* Center content */
 .container {
     text-align: center;
     margin-top: 120px;
 }
 
+/* Bigger clickable heart */
 .big-heart {
-    font-size: 70px;
+    font-size: 100px;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
 
 .big-heart:hover {
-    transform: scale(1.18);
+    transform: scale(1.15);
 }
 
 #message {
-    font-size: 22px;
+    font-size: 24px;
     color: #c80067;
     margin-top: 30px;
     opacity: 0;
-    transition: opacity 0.6s ease;
+    transition: opacity 0.7s ease;
 }
 
 #message.show {

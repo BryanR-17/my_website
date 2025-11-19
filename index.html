@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <!-- Background floating hearts -->
+    <!-- Background hearts -->
     <canvas id="bgHeartsCanvas"></canvas>
 
     <!-- Cursor hearts -->
@@ -15,8 +15,11 @@
     <!-- Click sparkles -->
     <canvas id="sparkleCanvas"></canvas>
 
+    <!-- Heart explosion particles -->
+    <canvas id="popCanvas"></canvas>
+
     <div class="container">
-        <div class="big-heart" onclick="heartClicked()">💖</div>
+        <div id="mainHeart" class="big-heart" onclick="heartClicked()">💖</div>
         <p id="message"></p>
     </div>
 
