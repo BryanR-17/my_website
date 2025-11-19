@@ -39,13 +39,16 @@ const compliments = [
 function heartClicked() {
     const heart = document.getElementById("mainHeart");
 
+    // hide click me text on first click
+    document.getElementById("clickText").style.display = "none";
+
     if (!firstClickDone) {
         firstClickDone = true;
 
-        popHeart();          // explode
-        showFirstMessage();  // show love note
+        popHeart();       
+        showFirstMessage();
 
-        // bring heart back smoothly
+        // bring heart back
         setTimeout(() => {
             heart.style.opacity = "1";
             heart.style.pointerEvents = "auto";
@@ -58,7 +61,7 @@ function heartClicked() {
 }
 
 /* --------------------------------------------------
-   💥 HEART EXPLOSION — smoother version 💥
+   HEART EXPLOSION (SMOOTH)
 -------------------------------------------------- */
 
 const popCanvas = document.getElementById("popCanvas");
@@ -74,7 +77,6 @@ function popHeart() {
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
 
-    // fade out heart
     heart.style.opacity = "0";
     heart.style.pointerEvents = "none";
 
@@ -98,14 +100,12 @@ function drawPopHearts() {
         let h = poppingHearts[i];
 
         popCtx.globalAlpha = h.opacity;
-        popCtx.fillStyle = "rgba(255, 80, 130)";
         popCtx.font = `${h.size}px serif`;
         popCtx.fillText("💖", h.x, h.y);
 
-        // smoother movement
         h.x += h.speedX;
         h.y += h.speedY;
-        h.speedY += h.gravity; // gravity pull
+        h.speedY += h.gravity;
         h.opacity -= 0.01;
 
         if (h.opacity <= 0) poppingHearts.splice(i, 1);
@@ -116,7 +116,7 @@ function drawPopHearts() {
 drawPopHearts();
 
 /* --------------------------------------------------
-   FIRST MESSAGE
+   FIRST MESSAGE REVEAL
 -------------------------------------------------- */
 
 function showFirstMessage() {
@@ -141,7 +141,7 @@ function showCompliment() {
 }
 
 /* --------------------------------------------------
-   FLOATING CURSOR HEARTS
+   CURSOR FLOATING HEARTS
 -------------------------------------------------- */
 
 const heartCanvas = document.getElementById("heartCanvas");
@@ -172,7 +172,6 @@ function drawHearts() {
         let h = hearts[i];
 
         hctx.globalAlpha = h.opacity;
-        hctx.fillStyle = "rgba(255, 100, 150)";
         hctx.font = `${h.size}px serif`;
         hctx.fillText("❤", h.x, h.y);
 
@@ -188,7 +187,7 @@ function drawHearts() {
 drawHearts();
 
 /* --------------------------------------------------
-   FLOATING BACKGROUND HEARTS
+   BACKGROUND FLOATING HEARTS
 -------------------------------------------------- */
 
 const bgCanvas = document.getElementById("bgHeartsCanvas");
@@ -216,7 +215,6 @@ function drawBackgroundHearts() {
         let h = bgHearts[i];
 
         bgCtx.globalAlpha = h.opacity;
-        bgCtx.fillStyle = "rgba(255, 120, 160)";
         bgCtx.font = `${h.size}px serif`;
         bgCtx.fillText("❤", h.x, h.y);
 
@@ -266,9 +264,9 @@ function drawSparkles() {
         let s = sparkles[i];
 
         sctx.globalAlpha = s.opacity;
-        sctx.fillStyle = "#ff99d6";
         sctx.beginPath();
         sctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        sctx.fillStyle = "#ff99d6";
         sctx.fill();
 
         s.x += s.speedX;
