@@ -39,23 +39,24 @@ function handleClick() {
     count++;
 
     const msg = document.getElementById("message");
-    const name = document.getElementById("nameReveal");
+    const svg = document.getElementById("nameSVG");
+    const paths = document.querySelectorAll("#nameSVG path");
 
     if (count === 1) {
         msg.textContent = firstMessage;
 
-        const letters = document.querySelectorAll(".name-reveal .letter");
-        
-        letters.forEach((letter, i) => {
-            setTimeout(() => {
-                letter.classList.add("show");
-            }, i * 250); // 250ms delay per letter
+        // show SVG
+        svg.classList.add("show");
+
+        // handwriting effect
+        paths.forEach((p, i) => {
+            p.style.animation = `draw 2.2s ease forwards ${i * 0.4}s`;
         });
 
-        // Start floating AFTER all letters appear
+        // floating AFTER writing is done
         setTimeout(() => {
-            name.style.animation = "floatName 3s ease-in-out infinite";
-        }, letters.length * 250 + 300);
+            svg.style.animation = "floatName 3s ease-in-out infinite";
+        }, 3500);
 
         triggerHeartExplosion();
         return;
@@ -63,49 +64,16 @@ function handleClick() {
 
     msg.textContent = messages[(count - 2) % messages.length];
 
-    if (count % 5 === 0) {
-        showCatVideo();
-    }
+    if (count % 5 === 0) showCatVideo();
 }
 
-/* HEART EXPLOSION */
-function triggerHeartExplosion() {
-    const heart = document.querySelector(".heart");
-    heart.classList.add("heart-explode");
-
-    heart.addEventListener(
-        "animationend",
-        () => {
-            heart.classList.remove("heart-explode");
-        },
-        { once: true }
-    );
-
-    const rect = heart.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-
-    const burstCount = 10;
-    const radius = 70;
-
-    for (let i = 0; i < burstCount; i++) {
-        const angle = (Math.PI * 2 * i) / burstCount;
-        const dx = Math.cos(angle) * radius;
-        const dy = Math.sin(angle) * radius;
-
-        const span = document.createElement("span");
-        span.textContent = "♥";
-        span.className = "burst-heart";
-        span.style.left = `${centerX}px`;
-        span.style.top = `${centerY}px`;
-        span.style.setProperty("--dx", `${dx}px`);
-        span.style.setProperty("--dy", `${dy}px`);
-
-        document.body.appendChild(span);
-
-        setTimeout(() => span.remove(), 800);
-    }
-}
+/* SVG HANDWRITING KEYFRAME */
+const style = document.createElement("style");
+style.innerHTML = `
+@keyframes draw {
+    to { stroke-dashoffset: 0; }
+}`;
+document.head.appendChild(style);
 
 /* CAT VIDEO POPUP */
 function showCatVideo() {
@@ -131,6 +99,16 @@ function showCatVideo() {
     }, 8000);
 }
 
+/* HEART EXPLOSION */
+function triggerHeartExplosion() {
+    const heart = document.querySelector(".heart");
+    heart.classList.add("heart-explode");
+
+    heart.addEventListener("animationend", () => {
+        heart.classList.remove("heart-explode");
+    }, { once: true });
+}
+
 /* CURSOR HEART TRAIL */
 document.addEventListener("mousemove", (e) => {
     const heart = document.createElement("span");
@@ -139,21 +117,17 @@ document.addEventListener("mousemove", (e) => {
     heart.style.left = `${e.clientX}px`;
     heart.style.top = `${e.clientY}px`;
     document.body.appendChild(heart);
-
     setTimeout(() => heart.remove(), 900);
 });
 
-/* FLOATING BACKGROUND HEARTS */
+/* FLOATING HEARTS */
 function createBackgroundHeart() {
     const heart = document.createElement("span");
     heart.className = "bg-heart";
     heart.textContent = "♥";
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.fontSize = 14 + Math.random() * 16 + "px";
-
     document.body.appendChild(heart);
-
     setTimeout(() => heart.remove(), 6000);
 }
-
 setInterval(createBackgroundHeart, 800);

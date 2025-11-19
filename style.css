@@ -12,144 +12,108 @@ body {
     font-size: 80px;
     cursor: pointer;
     user-select: none;
-    position: relative;
     display: inline-block;
     transition: transform 0.2s ease;
 }
 
-.heart:hover {
-    transform: scale(1.15);
-}
+.heart:hover { transform: scale(1.15); }
 
-/* First click heart explosion */
 .heart-explode {
     animation: heartExplode 0.45s ease-out;
 }
 
 @keyframes heartExplode {
-    0%   { transform: scale(1); }
-    40%  { transform: scale(1.25); }
-    70%  { transform: scale(0.9); }
+    0% { transform: scale(1); }
+    40% { transform: scale(1.25); }
+    70% { transform: scale(0.9); }
     100% { transform: scale(1); }
 }
 
-/* tiny "click me" */
 .click-hint {
-    display: block;
     font-size: 12px;
     color: #d15ba0;
     margin-top: -10px;
     opacity: 0.8;
 }
 
-/* MESSAGE */
+/* HANDWRITING SVG */
+.name-svg {
+    margin-top: 30px;
+    width: 500px;
+    height: 160px;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.name-svg.show {
+    opacity: 1;
+}
+
+/* SVG PATH DRAW EFFECT */
+#namePath, #namePath2, #namePath3, #namePath4 {
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    animation: none;
+}
+
+/* floating after handwriting finishes */
+@keyframes floatName {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+/* MESSAGE TEXT */
 .message {
     font-size: 22px;
     color: #b3006b;
-    margin-top: 25px;
-    min-height: 30px;
+    margin-top: 20px;
 }
 
 /* CAT VIDEO POPUP */
 .cat-popup {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -20%) scale(0.4);
     background: white;
     padding: 8px;
     border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 15px rgba(0,0,0,0.25);
     opacity: 0;
     pointer-events: none;
+    transform: scale(0.4);
     transition: opacity 0.35s ease, transform 0.35s ease;
-    z-index: 15;
+    z-index: 10;
 }
 
 .cat-popup.show {
     opacity: 1;
-    transform: translate(-50%, -20%) scale(1);
+    transform: scale(1);
 }
 
-/* CURSOR HEARTS */
-.cursor-heart {
-    position: fixed;
-    pointer-events: none;
-    color: #000;
-    font-size: 18px;
-    transform: translate(-50%, -50%);
-    animation: cursorHeart 0.9s ease-out forwards;
-    z-index: 12;
-}
-
-@keyframes cursorHeart {
-    0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    100% { opacity: 0; transform: translate(-50%, -140%) scale(0.6); }
-}
-
-/* FLOATING BACKGROUND HEARTS */
+/* FLOATING BG HEARTS */
 .bg-heart {
     position: fixed;
     bottom: -40px;
     color: #000;
-    pointer-events: none;
     opacity: 0;
     animation: floatHeart 6s linear forwards;
-    z-index: 0;
 }
 
 @keyframes floatHeart {
-    0%   { transform: translateY(0) scale(0.8); opacity: 0; }
-    15%  { opacity: 0.4; }
-    100% { transform: translateY(-110vh) scale(1.1); opacity: 0; }
+    0% { transform: translateY(0) scale(0.8); opacity: 0; }
+    20% { opacity: .4; }
+    100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
 }
 
-/* BURST HEARTS FROM CENTER */
-.burst-heart {
+/* CURSOR HEART TRAIL */
+.cursor-heart {
     position: fixed;
     color: #000;
-    font-size: 20px;
-    pointer-events: none;
-    animation: burst 0.8s ease-out forwards;
-    z-index: 14;
+    font-size: 18px;
+    transform: translate(-50%, -50%);
+    animation: cursorHeart 0.9s ease-out forwards;
 }
 
-@keyframes burst {
-    0%   { opacity: 1; transform: translate(0, 0) scale(0.9); }
-    100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.4); }
-}
-
-/* ALYSSA NAME ANIMATION */
-.name-reveal {
-    font-family: "Great Vibes", cursive;
-    font-size: 70px;       /* BIGGER + prettier */
-    color: #b3006b;
-    opacity: 1;
-    margin-top: 20px;
-    pointer-events: none;
-    white-space: nowrap;
-    text-shadow: 
-        0 0 10px rgba(255, 150, 200, 0.7),
-        0 0 18px rgba(255, 120, 180, 0.5);
-}
-
-/* letter styling */
-.name-reveal .letter {
-    opacity: 0;
-    display: inline-block;
-    transform: translateY(14px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-/* when letters appear */
-.name-reveal .letter.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* soft floating animation once name fully appears */
-@keyframes floatName {
-    0%   { transform: translateY(0); }
-    50%  { transform: translateY(-8px); }
-    100% { transform: translateY(0); }
+@keyframes cursorHeart {
+    0% { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%,-140%) scale(.6); }
 }
