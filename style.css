@@ -1,84 +1,57 @@
 body {
-    margin: 0;
-    font-family: 'Georgia', serif;
-    overflow: hidden;
-}
-
-/* Soft cute repeating cat background */
-.paper-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:
-        linear-gradient(to bottom, #fffaf7, #fff2ed),
-        url('https://i.imgur.com/V0eIfQb.png');
-    background-size: 250px 250px;
-    background-repeat: repeat;
-    opacity: 0.85;
-    z-index: -5;
-}
-
-/* Canvas layers */
-#bgHeartsCanvas, #heartCanvas, #sparkleCanvas, #popCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-
-#bgHeartsCanvas { z-index: -4; }
-#heartCanvas { z-index: -3; }
-#sparkleCanvas { z-index: -2; }
-#popCanvas { z-index: -1; }
-
-/* Main layout */
-.container {
-    position: relative;
+    background: #ffe6f2;
+    font-family: "Arial", sans-serif;
     text-align: center;
-    margin-top: 130px;
-    z-index: 10;
+    margin: 0;
+    padding-top: 80px;
 }
 
-/* Big heart */
-.big-heart {
-    font-size: 110px;
+/* HEART */
+.heart {
+    font-size: 80px;
     cursor: pointer;
-    transition: transform 0.3s ease, opacity 0.5s ease;
+    user-select: none;
+    position: relative;
+    display: inline-block;
+    transition: transform 0.2s ease;
 }
 
-.big-heart:hover {
-    transform: scale(1.12);
+.heart:hover {
+    transform: scale(1.15);
 }
 
-/* Tiny cute “click me” */
-.click-text-small {
+/* tiny "click me" */
+.click-hint {
+    display: block;
     font-size: 12px;
-    color: #a30046;
-    opacity: 0.55;
-    margin-top: 4px;
-    font-family: 'Georgia', serif;
-    animation: softBlink 2s ease-in-out infinite;
+    color: #d15ba0;
+    margin-top: -10px;
+    opacity: 0.8;
 }
 
-@keyframes softBlink {
-    0% { opacity: 0.55; }
-    50% { opacity: 0.25; }
-    100% { opacity: 0.55; }
+/* MESSAGE */
+.message {
+    font-size: 22px;
+    color: #b3006b;
+    margin-top: 25px;
+    min-height: 30px;
 }
 
-/* Message styling */
-#message {
-    font-size: 28px;
-    color: #8a003b;
-    margin-top: 35px;
+/* CAT VIDEO POPUP */
+.cat-popup {
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
     opacity: 0;
-    transition: opacity 0.7s ease;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
 }
 
-#message.show {
+.cat-popup.show {
     opacity: 1;
 }
