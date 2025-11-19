@@ -1,10 +1,35 @@
 body {
-    background: #ffe6f2;
-    font-family: "Arial", sans-serif;
+    background: #f7dce8;
     text-align: center;
-    margin: 0;
-    padding-top: 80px;
-    overflow: hidden;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* HANDWRITTEN NAME */
+#name-container {
+    margin-top: 40px;
+    opacity: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    transition: opacity 1.2s ease;
+}
+
+#alyssa-svg {
+    width: 350px;
+    height: auto;
+}
+
+#alyssa-path {
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    animation: none;
+}
+
+@keyframes writeName {
+    to {
+        stroke-dashoffset: 0;
+    }
 }
 
 /* HEART */
@@ -12,108 +37,47 @@ body {
     font-size: 80px;
     cursor: pointer;
     user-select: none;
+    position: relative;
     display: inline-block;
     transition: transform 0.2s ease;
+    margin-top: 40px;
 }
 
-.heart:hover { transform: scale(1.15); }
-
-.heart-explode {
-    animation: heartExplode 0.45s ease-out;
-}
-
-@keyframes heartExplode {
-    0% { transform: scale(1); }
-    40% { transform: scale(1.25); }
-    70% { transform: scale(0.9); }
-    100% { transform: scale(1); }
+.heart:hover {
+    transform: scale(1.15);
 }
 
 .click-hint {
+    display: block;
     font-size: 12px;
-    color: #d15ba0;
+    color: #d115ba;
     margin-top: -10px;
     opacity: 0.8;
 }
 
-/* HANDWRITING SVG */
-.name-svg {
-    margin-top: 30px;
-    width: 500px;
-    height: 160px;
-    opacity: 0;
-    transition: opacity 1s ease;
-}
-
-.name-svg.show {
-    opacity: 1;
-}
-
-/* SVG PATH DRAW EFFECT */
-#namePath, #namePath2, #namePath3, #namePath4 {
-    stroke-dasharray: 800;
-    stroke-dashoffset: 800;
-    animation: none;
-}
-
-/* floating after handwriting finishes */
-@keyframes floatName {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-    100% { transform: translateY(0); }
-}
-
-/* MESSAGE TEXT */
+/* MESSAGE */
 .message {
     font-size: 22px;
     color: #b3006b;
     margin-top: 20px;
+    min-height: 30px;
 }
 
-/* CAT VIDEO POPUP */
+/* CAT POPUP */
 .cat-popup {
-    position: fixed;
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    transform: translateX(-50%);
     background: white;
-    padding: 8px;
+    padding: 10px;
     border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.25);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
     opacity: 0;
     pointer-events: none;
-    transform: scale(0.4);
-    transition: opacity 0.35s ease, transform 0.35s ease;
-    z-index: 10;
+    transition: opacity 0.4s ease;
 }
 
 .cat-popup.show {
     opacity: 1;
-    transform: scale(1);
-}
-
-/* FLOATING BG HEARTS */
-.bg-heart {
-    position: fixed;
-    bottom: -40px;
-    color: #000;
-    opacity: 0;
-    animation: floatHeart 6s linear forwards;
-}
-
-@keyframes floatHeart {
-    0% { transform: translateY(0) scale(0.8); opacity: 0; }
-    20% { opacity: .4; }
-    100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
-}
-
-/* CURSOR HEART TRAIL */
-.cursor-heart {
-    position: fixed;
-    color: #000;
-    font-size: 18px;
-    transform: translate(-50%, -50%);
-    animation: cursorHeart 0.9s ease-out forwards;
-}
-
-@keyframes cursorHeart {
-    0% { opacity: 1; transform: translate(-50%,-50%) scale(1); }
-    100% { opacity: 0; transform: translate(-50%,-140%) scale(.6); }
 }

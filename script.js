@@ -19,115 +19,62 @@ const messages = [
     "Your presence brings me peace.",
     "You have the sweetest soul.",
     "You’re the swaggiest.",
-    "You make silence comfortable. 🤍",
+    "You make silence comfortable. 💜",
     "You are the love of my life.",
-    "You’re so rad. ✨",
+    "You're so rad. ✨",
     "You deserve everything.",
-    "Te amo muchisimo.",
-    "You make life worth livin. 💞",
+    "Te amo muchísimo.",
+    "You make life worth livin’. 💞",
     "I would die for you.",
     "You're beautiful without even trying.",
     "You are my world.",
-    "You give me butterflies.",
+    "You give me butterflies. 🦋",
     "You're the cutest human alive.",
     "Every part of you is special.",
-    "You always make me feel safe.",
     "You're my safe place."
 ];
 
+// FIRST CLICK triggers name + message
 function handleClick() {
     count++;
 
-    const msg = document.getElementById("message");
-    const svg = document.getElementById("nameSVG");
-    const paths = document.querySelectorAll("#nameSVG path");
+    let msg = document.getElementById("message");
 
+    // First click → special message + name animation
     if (count === 1) {
         msg.textContent = firstMessage;
 
-        // show SVG
-        svg.classList.add("show");
+        // Fade in and write name
+        const nameBox = document.getElementById("name-container");
+        const path = document.getElementById("alyssa-path");
 
-        // handwriting effect
-        paths.forEach((p, i) => {
-            p.style.animation = `draw 2.2s ease forwards ${i * 0.4}s`;
-        });
+        nameBox.style.opacity = "1";
+        path.style.animation = "writeName 3s ease forwards";
 
-        // floating AFTER writing is done
-        setTimeout(() => {
-            svg.style.animation = "floatName 3s ease-in-out infinite";
-        }, 3500);
-
-        triggerHeartExplosion();
         return;
     }
 
+    // After first click → rotate compliments
     msg.textContent = messages[(count - 2) % messages.length];
 
-    if (count % 5 === 0) showCatVideo();
+    // Every 5 clicks → cat video
+    if (count % 5 === 0) {
+        showCatVideo();
+    }
 }
 
-/* SVG HANDWRITING KEYFRAME */
-const style = document.createElement("style");
-style.innerHTML = `
-@keyframes draw {
-    to { stroke-dashoffset: 0; }
-}`;
-document.head.appendChild(style);
-
-/* CAT VIDEO POPUP */
 function showCatVideo() {
     const popup = document.getElementById("cat-popup");
     const video = document.getElementById("cat-video");
-    const heart = document.querySelector(".heart");
-    const rect = heart.getBoundingClientRect();
-
-    const centerX = rect.left + rect.width / 2;
-    const bottomY = rect.bottom;
-
-    popup.style.left = `${centerX}px`;
-    popup.style.top = `${bottomY + 20}px`;
 
     popup.classList.add("show");
     video.currentTime = 0;
     video.muted = false;
     video.play();
 
+    // hide after full 8 seconds
     setTimeout(() => {
         popup.classList.remove("show");
         video.pause();
-    }, 8000);
+    }, 7000);
 }
-
-/* HEART EXPLOSION */
-function triggerHeartExplosion() {
-    const heart = document.querySelector(".heart");
-    heart.classList.add("heart-explode");
-
-    heart.addEventListener("animationend", () => {
-        heart.classList.remove("heart-explode");
-    }, { once: true });
-}
-
-/* CURSOR HEART TRAIL */
-document.addEventListener("mousemove", (e) => {
-    const heart = document.createElement("span");
-    heart.className = "cursor-heart";
-    heart.textContent = "♥";
-    heart.style.left = `${e.clientX}px`;
-    heart.style.top = `${e.clientY}px`;
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 900);
-});
-
-/* FLOATING HEARTS */
-function createBackgroundHeart() {
-    const heart = document.createElement("span");
-    heart.className = "bg-heart";
-    heart.textContent = "♥";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = 14 + Math.random() * 16 + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
-}
-setInterval(createBackgroundHeart, 800);
