@@ -44,13 +44,18 @@ function handleClick() {
     if (count === 1) {
         msg.textContent = firstMessage;
 
-        // fade in Alyssa
-        name.classList.add("show");
+        const letters = document.querySelectorAll(".name-reveal .letter");
+        
+        letters.forEach((letter, i) => {
+            setTimeout(() => {
+                letter.classList.add("show");
+            }, i * 200); // 200ms delay per letter
+        });
 
-        // start floating after fade starts
+        // Start floating AFTER all letters appear
         setTimeout(() => {
             name.style.animation = "floatName 3s ease-in-out infinite";
-        }, 200);
+        }, letters.length * 200 + 300);
 
         triggerHeartExplosion();
         return;
