@@ -1,13 +1,10 @@
 /* ----------------------------------------
-   MAIN MESSAGES
+   FIRST MESSAGE + COMPLIMENTS
 -----------------------------------------*/
 
-// First typewriter message
 const firstMessage = "I wrote all this just to say… you mean more to me than you know. 💌";
+let firstClickDone = false;
 
-let firstClickDone = false; // Tracks if we've shown the first message
-
-// Compliments list (30 messages)
 const compliments = [
     "You are my home.",
     "Your smile is my favorite place.",
@@ -40,12 +37,10 @@ const compliments = [
 ];
 
 
-
-/* ----------------------------------------
-   HEART CLICK HANDLER
------------------------------------------*/
-
+/* ------------------ HEART CLICK MAIN LOGIC ------------------- */
 function heartClicked() {
+    createSparkles(); // ✨ sparkle effect
+
     if (!firstClickDone) {
         firstClickDone = true;
         typeWriter(firstMessage);
@@ -55,18 +50,13 @@ function heartClicked() {
 }
 
 
-
-/* ----------------------------------------
-   TYPEWRITER EFFECT (first message only)
------------------------------------------*/
-
+/* ------------------ TYPEWRITER ------------------- */
 function typeWriter(text) {
     const msg = document.getElementById("message");
     msg.textContent = "";
     msg.classList.remove("show");
 
     let i = 0;
-
     function write() {
         if (i < text.length) {
             msg.textContent += text.charAt(i);
@@ -76,37 +66,30 @@ function typeWriter(text) {
             msg.classList.add("show");
         }
     }
-
     write();
 }
 
 
-
-/* ----------------------------------------
-   RANDOM COMPLIMENT (after first click)
------------------------------------------*/
-
+/* ------------------ COMPLIMENTS ------------------- */
 function showCompliment() {
     const msg = document.getElementById("message");
-
     const random = compliments[Math.floor(Math.random() * compliments.length)];
-    msg.textContent = random;
 
     msg.classList.remove("show");
+    msg.textContent = random;
     setTimeout(() => msg.classList.add("show"), 20);
 }
-
 
 
 /* ----------------------------------------
    FLOATING HEART PARTICLES
 -----------------------------------------*/
 
-const canvas = document.getElementById("heartCanvas");
-const ctx = canvas.getContext("2d");
+const heartCanvas = document.getElementById("heartCanvas");
+const hctx = heartCanvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+heartCanvas.width = window.innerWidth;
+heartCanvas.height = window.innerHeight;
 
 let hearts = [];
 
@@ -124,15 +107,15 @@ document.addEventListener("mousemove", function(e) {
 });
 
 function drawHearts() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    hctx.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
 
     for (let i = hearts.length - 1; i >= 0; i--) {
         let h = hearts[i];
 
-        ctx.globalAlpha = h.opacity;
-        ctx.fillStyle = "rgba(255, 100, 150)";
-        ctx.font = `${h.size}px serif`;
-        ctx.fillText("❤", h.x, h.y);
+        hctx.globalAlpha = h.opacity;
+        hctx.fillStyle = "rgba(255, 100, 150)";
+        hctx.font = `${h.size}px serif`;
+        hctx.fillText("❤", h.x, h.y);
 
         h.y -= h.speedY;
         h.x += h.speedX;
@@ -145,3 +128,58 @@ function drawHearts() {
 }
 
 drawHearts();
+
+
+/* ----------------------------------------
+   ✨ SPARKLES ON HEART CLICK
+-----------------------------------------*/
+
+const sparkleCanvas = document.getElementById("sparkleCanvas");
+const sctx = sparkleCanvas.getContext("2d");
+
+sparkleCanvas.width = window.innerWidth;
+sparkleCanvas.height = window.innerHeight;
+
+let sparkles = [];
+
+function createSparkles() {
+    const heart = document.querySelector(".big-heart");
+    const rect = heart.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    for (let i = 0; i < 15; i++) {
+        sparkles.push({
+            x,
+            y,
+            size: Math.random() * 4 + 2,
+            speedX: (Math.random() - 0.5) * 4,
+            speedY: (Math.random() - 0.5) * 4,
+            opacity: 1
+        });
+    }
+}
+
+function drawSparkles() {
+    sctx.clearRect(0, 0, sparkleCanvas.width, sparkleCanvas.height);
+
+    for (let i = sparkles.length - 1; i >= 0; i--) {
+        let s = sparkles[i];
+
+        sctx.globalAlpha = s.opacity;
+        sctx.fillStyle = "#ff99d6";
+        sctx.beginPath();
+        sctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        sctx.fill();
+
+        s.x += s.speedX;
+        s.y += s.speedY;
+        s.opacity -= 0.03;
+
+        if (s.opacity <= 0) sparkles.splice(i, 1);
+    }
+
+    requestAnimationFrame(drawSparkles);
+}
+
+drawSparkles();
