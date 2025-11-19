@@ -40,6 +40,9 @@ body {
     opacity: 1;
 }
 
+.hidden {
+    opacity: 1;
+}
 /* Floating hearts container */
 .floating-hearts {
     position: absolute;
