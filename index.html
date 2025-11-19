@@ -5,27 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For You 💖</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
-
 <body>
+
+    <!-- FLOATING NAME -->
+    <div id="name-container"></div>
+
+    <!-- HEART BUTTON -->
     <div class="heart" onclick="handleClick()">
         💖
         <span class="click-hint">click me</span>
     </div>
 
-    <h1 id="name" class="hidden-name"></h1>
+    <!-- MESSAGE TEXT -->
     <p id="message" class="message"></p>
 
-    <div id="floating-hearts"></div>
-    <div id="cursor-hearts"></div>
-
+    <!-- CAT VIDEO POPUP -->
     <div id="cat-popup" class="cat-popup">
         <video id="cat-video" width="250" playsinline>
             <source src="cat.mp4" type="video/mp4">
         </video>
     </div>
 
-    <script src="script.js"></script>
+    <!-- MAZE (HIDDEN) -->
+    <div id="maze-wrapper" class="maze-wrapper hidden">
+        <div id="maze-grid" class="maze-grid"></div>
+    </div>
+
+<script src="script.js"></script>
 </body>
 </html>
