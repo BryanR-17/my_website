@@ -1,8 +1,21 @@
 body {
     margin: 0;
-    background: linear-gradient(180deg, #ffe0f0, #ffd6e8, #ffe6f7);
-    font-family: 'Arial', sans-serif;
+    font-family: 'Georgia', serif;
     overflow: hidden;
+}
+
+/* Soft love-letter paper background */
+.paper-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.7), rgba(240,230,220,0.95)),
+        url('https://www.transparenttextures.com/patterns/old-wall.png');
+    background-size: cover;
+    z-index: -5;
 }
 
 /* Canvas layers */
@@ -15,33 +28,36 @@ body {
     pointer-events: none;
 }
 
-#bgHeartsCanvas { z-index: -3; }
-#heartCanvas { z-index: -2; }
-#sparkleCanvas { z-index: -1; }
-#popCanvas { z-index: 0; }
+/* Correct z-index order */
+#bgHeartsCanvas { z-index: -4; }
+#heartCanvas { z-index: -3; }
+#sparkleCanvas { z-index: -2; }
+#popCanvas { z-index: -1; }
 
-/* Centered layout */
+/* Main content */
 .container {
+    position: relative;
     text-align: center;
-    margin-top: 120px;
+    margin-top: 130px;
+    z-index: 10; /* ⭐ HEART ALWAYS ABOVE CANVASES */
 }
 
-/* Big clickable heart */
+/* Big heart */
 .big-heart {
-    font-size: 100px;
+    font-size: 110px;
     cursor: pointer;
     transition: transform 0.3s ease, opacity 0.5s ease;
 }
 
 .big-heart:hover {
-    transform: scale(1.15);
+    transform: scale(1.12);
 }
 
-/* Message styling */
+/* Message text */
 #message {
-    font-size: 24px;
-    color: #c80067;
-    margin-top: 30px;
+    font-size: 28px;
+    color: #8a003b;
+    margin-top: 35px;
     opacity: 0;
     transition: opacity 0.7s ease;
 }

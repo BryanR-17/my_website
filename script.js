@@ -42,14 +42,14 @@ function heartClicked() {
     if (!firstClickDone) {
         firstClickDone = true;
 
-        popHeart();       // explosion
-        showFirstMessage();
-        
-        // ❤️ bring the heart back after explosion
+        popHeart();          // explode
+        showFirstMessage();  // show love note
+
+        // bring heart back smoothly
         setTimeout(() => {
             heart.style.opacity = "1";
             heart.style.pointerEvents = "auto";
-        }, 1200);
+        }, 1500);
 
     } else {
         createSparkles();
@@ -57,9 +57,8 @@ function heartClicked() {
     }
 }
 
-
 /* --------------------------------------------------
-   💥 HEART EXPLOSION
+   💥 HEART EXPLOSION — smoother version 💥
 -------------------------------------------------- */
 
 const popCanvas = document.getElementById("popCanvas");
@@ -72,20 +71,21 @@ let poppingHearts = [];
 function popHeart() {
     const heart = document.getElementById("mainHeart");
     const rect = heart.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
 
-    // Make heart disappear temporarily
+    // fade out heart
     heart.style.opacity = "0";
     heart.style.pointerEvents = "none";
 
-    for (let i = 0; i < 35; i++) {
+    for (let i = 0; i < 40; i++) {
         poppingHearts.push({
-            x,
-            y,
-            size: Math.random() * 18 + 8,
-            speedX: (Math.random() - 0.5) * 6,
-            speedY: (Math.random() - 0.5) * 6,
+            x: centerX,
+            y: centerY,
+            size: Math.random() * 16 + 10,
+            speedX: (Math.random() - 0.5) * 5,
+            speedY: (Math.random() - 0.5) * 5,
+            gravity: 0.05,
             opacity: 1
         });
     }
@@ -102,35 +102,32 @@ function drawPopHearts() {
         popCtx.font = `${h.size}px serif`;
         popCtx.fillText("💖", h.x, h.y);
 
+        // smoother movement
         h.x += h.speedX;
         h.y += h.speedY;
-        h.opacity -= 0.02;
+        h.speedY += h.gravity; // gravity pull
+        h.opacity -= 0.01;
 
         if (h.opacity <= 0) poppingHearts.splice(i, 1);
     }
 
     requestAnimationFrame(drawPopHearts);
 }
-
 drawPopHearts();
 
-
 /* --------------------------------------------------
-   FIRST MESSAGE FADE-IN
+   FIRST MESSAGE
 -------------------------------------------------- */
 
 function showFirstMessage() {
     const msg = document.getElementById("message");
     msg.textContent = firstMessage;
 
-    setTimeout(() => {
-        msg.classList.add("show");
-    }, 400);
+    setTimeout(() => msg.classList.add("show"), 400);
 }
 
-
 /* --------------------------------------------------
-   SHOW COMPLIMENTS
+   COMPLIMENTS
 -------------------------------------------------- */
 
 function showCompliment() {
@@ -143,13 +140,13 @@ function showCompliment() {
     setTimeout(() => msg.classList.add("show"), 20);
 }
 
-
 /* --------------------------------------------------
    FLOATING CURSOR HEARTS
 -------------------------------------------------- */
 
 const heartCanvas = document.getElementById("heartCanvas");
 const hctx = heartCanvas.getContext("2d");
+
 heartCanvas.width = window.innerWidth;
 heartCanvas.height = window.innerHeight;
 
@@ -161,7 +158,7 @@ document.addEventListener("mousemove", function(e) {
             x: e.clientX,
             y: e.clientY,
             size: Math.random() * 6 + 4,
-            speedY: Math.random() * 1 + 0.5,
+            speedY: Math.random() * 0.7 + 0.5,
             speedX: (Math.random() - 0.5),
             opacity: 1
         });
@@ -175,22 +172,20 @@ function drawHearts() {
         let h = hearts[i];
 
         hctx.globalAlpha = h.opacity;
-        hctx.fillStyle = "rgba(255, 120, 160)";
+        hctx.fillStyle = "rgba(255, 100, 150)";
         hctx.font = `${h.size}px serif`;
         hctx.fillText("❤", h.x, h.y);
 
         h.x += h.speedX;
         h.y -= h.speedY;
-        h.opacity -= 0.02;
+        h.opacity -= 0.015;
 
         if (h.opacity <= 0) hearts.splice(i, 1);
     }
 
     requestAnimationFrame(drawHearts);
 }
-
 drawHearts();
-
 
 /* --------------------------------------------------
    FLOATING BACKGROUND HEARTS
@@ -198,6 +193,7 @@ drawHearts();
 
 const bgCanvas = document.getElementById("bgHeartsCanvas");
 const bgCtx = bgCanvas.getContext("2d");
+
 bgCanvas.width = window.innerWidth;
 bgCanvas.height = window.innerHeight;
 
@@ -206,10 +202,10 @@ let bgHearts = [];
 setInterval(() => {
     bgHearts.push({
         x: Math.random() * bgCanvas.width,
-        y: bgCanvas.height + 40,
+        y: bgCanvas.height + 30,
         size: Math.random() * 18 + 8,
-        speedY: Math.random() * 0.5 + 0.3,
-        opacity: Math.random() * 0.5 + 0.4
+        speedY: Math.random() * 0.4 + 0.2,
+        opacity: Math.random() * 0.4 + 0.3
     });
 }, 600);
 
@@ -226,14 +222,12 @@ function drawBackgroundHearts() {
 
         h.y -= h.speedY;
 
-        if (h.y < -50) bgHearts.splice(i, 1);
+        if (h.y < -40) bgHearts.splice(i, 1);
     }
 
     requestAnimationFrame(drawBackgroundHearts);
 }
-
 drawBackgroundHearts();
-
 
 /* --------------------------------------------------
    SPARKLES
@@ -241,6 +235,7 @@ drawBackgroundHearts();
 
 const sparkleCanvas = document.getElementById("sparkleCanvas");
 const sctx = sparkleCanvas.getContext("2d");
+
 sparkleCanvas.width = window.innerWidth;
 sparkleCanvas.height = window.innerHeight;
 
@@ -257,8 +252,8 @@ function createSparkles() {
             x,
             y,
             size: Math.random() * 4 + 2,
-            speedX: (Math.random() - 0.5) * 4,
-            speedY: (Math.random() - 0.5) * 4,
+            speedX: (Math.random() - 0.5) * 3,
+            speedY: (Math.random() - 0.5) * 3,
             opacity: 1
         });
     }
@@ -285,5 +280,4 @@ function drawSparkles() {
 
     requestAnimationFrame(drawSparkles);
 }
-
 drawSparkles();
