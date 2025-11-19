@@ -49,13 +49,13 @@ function handleClick() {
         letters.forEach((letter, i) => {
             setTimeout(() => {
                 letter.classList.add("show");
-            }, i * 200); // 200ms delay per letter
+            }, i * 250); // 250ms delay per letter
         });
 
         // Start floating AFTER all letters appear
         setTimeout(() => {
             name.style.animation = "floatName 3s ease-in-out infinite";
-        }, letters.length * 200 + 300);
+        }, letters.length * 250 + 300);
 
         triggerHeartExplosion();
         return;
