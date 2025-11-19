@@ -7,52 +7,60 @@ let firstClickDone = false;
 
 const compliments = [
     "You are my home.",
-    "Your smile is my favorite place.",
-    "You make life softer. 🌸",
-    "You make everything feel lighter.",
-    "You’re a blessing I didn’t expect. 💗",
+    "Your smile is the cutest.",
+    "You make life better. 🌸",
+    "You are my everything.",
+    "You’re my biggest blessing. 💗",
     "You make bad days disappear.",
-    "Your laugh is everything. 😭❤️",
-    "You are sunshine in human form. ☀️",
-    "I adore your heart.",
+    "I am so proud of you. ❤️",
+    "You are my sunshine. ☀️",
+    "I adore you.",
     "You don’t realize how amazing you are.",
     "You make me want to be better.",
     "You make everything warmer. 🌷",
-    "Your presence feels like peace.",
+    "Your presence brings me peace.",
     "You have the sweetest soul.",
-    "You’re someone I never want to lose.",
+    "You’re the swaggiest.",
     "You make silence comfortable. 🤍",
-    "You are loved more than you know.",
-    "Your energy is unmatched. ✨",
-    "You make the world feel softer.",
-    "You deserve every good thing.",
-    "You make life feel romantic. 💞",
-    "You’re my favorite person.",
+    "You are the love of my life.",
+    "You’re so rad. ✨",
+    "You deserve everything.",
+    "Te amo muchisimo.",
+    "You make life worth livin. 💞",
+    "I would die for you.",
     "You’re beautiful without even trying.",
-    "You feel like destiny.",
-    "You make my heart rest.",
+    "You are my world.",
+    "You give me butterflies.",
     "You're the cutest human alive.",
     "Every part of you is special.",
     "You're my safe place."
 ];
 
 function heartClicked() {
+    const heart = document.getElementById("mainHeart");
 
     if (!firstClickDone) {
         firstClickDone = true;
 
-        popHeart();       // 💥 new heart explosion effect
-        showFirstMessage(); // fade-in first message
+        popHeart();       // explosion
+        showFirstMessage();
+        
+        // ❤️ bring the heart back after explosion
+        setTimeout(() => {
+            heart.style.opacity = "1";
+            heart.style.pointerEvents = "auto";
+        }, 1200);
 
     } else {
-        createSparkles();  // sparkles every click
-        showCompliment();  // compliments after first click
+        createSparkles();
+        showCompliment();
     }
 }
 
-/* ---------------------------------------
-   ❤️ HEART POP → LITTLE HEART EXPLOSION
-----------------------------------------*/
+
+/* --------------------------------------------------
+   💥 HEART EXPLOSION
+-------------------------------------------------- */
 
 const popCanvas = document.getElementById("popCanvas");
 const popCtx = popCanvas.getContext("2d");
@@ -67,7 +75,7 @@ function popHeart() {
     const x = rect.left + rect.width / 2;
     const y = rect.top + rect.height / 2;
 
-    // Hide main heart after clicking
+    // Make heart disappear temporarily
     heart.style.opacity = "0";
     heart.style.pointerEvents = "none";
 
@@ -106,9 +114,10 @@ function drawPopHearts() {
 
 drawPopHearts();
 
-/* ---------------------------------------
+
+/* --------------------------------------------------
    FIRST MESSAGE FADE-IN
-----------------------------------------*/
+-------------------------------------------------- */
 
 function showFirstMessage() {
     const msg = document.getElementById("message");
@@ -116,12 +125,13 @@ function showFirstMessage() {
 
     setTimeout(() => {
         msg.classList.add("show");
-    }, 300);
+    }, 400);
 }
 
-/* ---------------------------------------
-   SHOW COMPLIMENT ON NEXT CLICKS
-----------------------------------------*/
+
+/* --------------------------------------------------
+   SHOW COMPLIMENTS
+-------------------------------------------------- */
 
 function showCompliment() {
     const msg = document.getElementById("message");
@@ -133,9 +143,10 @@ function showCompliment() {
     setTimeout(() => msg.classList.add("show"), 20);
 }
 
-/* ---------------------------------------
-   FLOATING CURSOR HEART PARTICLES
-----------------------------------------*/
+
+/* --------------------------------------------------
+   FLOATING CURSOR HEARTS
+-------------------------------------------------- */
 
 const heartCanvas = document.getElementById("heartCanvas");
 const hctx = heartCanvas.getContext("2d");
@@ -180,9 +191,10 @@ function drawHearts() {
 
 drawHearts();
 
-/* ---------------------------------------
+
+/* --------------------------------------------------
    FLOATING BACKGROUND HEARTS
-----------------------------------------*/
+-------------------------------------------------- */
 
 const bgCanvas = document.getElementById("bgHeartsCanvas");
 const bgCtx = bgCanvas.getContext("2d");
@@ -222,9 +234,10 @@ function drawBackgroundHearts() {
 
 drawBackgroundHearts();
 
-/* ---------------------------------------
-   SPARKLES ON CLICK
-----------------------------------------*/
+
+/* --------------------------------------------------
+   SPARKLES
+-------------------------------------------------- */
 
 const sparkleCanvas = document.getElementById("sparkleCanvas");
 const sctx = sparkleCanvas.getContext("2d");
@@ -234,7 +247,7 @@ sparkleCanvas.height = window.innerHeight;
 let sparkles = [];
 
 function createSparkles() {
-    const heart = document.getElementById("mainHeart") || document.getElementById("message");
+    const heart = document.getElementById("mainHeart");
     const rect = heart.getBoundingClientRect();
     const x = rect.left + rect.width / 2;
     const y = rect.top + rect.height / 2;

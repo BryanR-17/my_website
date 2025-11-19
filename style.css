@@ -20,23 +20,24 @@ body {
 #sparkleCanvas { z-index: -1; }
 #popCanvas { z-index: 0; }
 
-/* Center content */
+/* Centered layout */
 .container {
     text-align: center;
     margin-top: 120px;
 }
 
-/* Bigger clickable heart */
+/* Big clickable heart */
 .big-heart {
     font-size: 100px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.5s ease;
 }
 
 .big-heart:hover {
     transform: scale(1.15);
 }
 
+/* Message styling */
 #message {
     font-size: 24px;
     color: #c80067;
