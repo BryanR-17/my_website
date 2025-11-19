@@ -95,3 +95,117 @@ body {
     from { opacity: 1; transform: translateY(0); }
     to { opacity: 0; transform: translateY(-25px); }
 }
+/* ============ CAT CAFÉ MAZE OVERLAY ============ */
+
+.maze-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: none; /* hidden until triggered */
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    backdrop-filter: blur(2px);
+}
+
+.maze-overlay.show {
+    display: flex;
+}
+
+.maze-box {
+    background: #f7e3c8; /* latte-ish beige */
+    border-radius: 16px;
+    padding: 16px 18px 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    border: 2px solid #c28a52;
+}
+
+.maze-title {
+    margin: 0 0 10px;
+    font-size: 20px;
+    color: #5b3a1f;
+}
+
+/* maze grid */
+#maze-grid {
+    display: grid;
+    grid-template-columns: repeat(20, 16px);
+    grid-template-rows: repeat(20, 16px);
+    gap: 2px;
+    justify-content: center;
+    margin: 8px auto 10px;
+}
+
+.maze-cell {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+/* walls + path colors (cat café theme) */
+.maze-wall {
+    background: #8b5a2b;       /* brown walls */
+}
+
+.maze-path {
+    background: #fff7ee;       /* cream path */
+}
+
+/* player + goal */
+.maze-player {
+    background: #ffe0c2;
+}
+.maze-goal {
+    background: #ffe8cc;
+}
+
+/* controls under maze */
+.maze-controls {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.maze-btn {
+    border: none;
+    background: #c28a52;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 8px;
+    margin: 0 2px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.maze-btn:active {
+    transform: translateY(1px);
+}
+
+/* message + close button */
+.maze-message {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #5b3a1f;
+}
+
+.maze-close {
+    margin-top: 6px;
+    border: none;
+    background: #5b3a1f;
+    color: #f7e3c8;
+    padding: 5px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 13px;
+}
+.maze-close:active {
+    transform: translateY(1px);
+}

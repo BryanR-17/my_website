@@ -39,6 +39,26 @@
     </div>
 
     <script src="script.js"></script>
+    
+    <!-- CAT CAFÉ MAZE OVERLAY (HIDDEN BY DEFAULT) -->
+    <div id="maze-overlay" class="maze-overlay">
+      <div class="maze-box">
+        <h2 class="maze-title">cat café maze 🐈☕</h2>
+        <div id="maze-grid"></div>
+
+        <div class="maze-controls">
+          <button class="maze-btn" data-dir="up">⬆</button>
+          <div>
+            <button class="maze-btn" data-dir="left">⬅</button>
+            <button class="maze-btn" data-dir="down">⬇</button>
+            <button class="maze-btn" data-dir="right">➡</button>
+          </div>
+        </div>
+
+        <p id="maze-message" class="maze-message"></p>
+        <button id="maze-close" class="maze-close">close</button>
+      </div>
+    </div>
 
 </body>
 </html>
