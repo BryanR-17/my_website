@@ -39,32 +39,28 @@ function handleClick() {
     count++;
 
     const msg = document.getElementById("message");
-    const heart = document.querySelector(".heart");
 
     if (count === 1) {
-        // first special message
         msg.textContent = firstMessage;
 
-        // heart explode animation + burst hearts
+        document.getElementById("nameReveal").classList.add("show");
+
         triggerHeartExplosion();
         return;
     }
 
-    // After first click → cycle compliments
     msg.textContent = messages[(count - 2) % messages.length];
 
-    // Every 5 clicks → show cat video with smooth pop-out
     if (count % 5 === 0) {
         showCatVideo();
     }
 }
 
-/* HEART EXPLOSION + BURST HEARTS */
+/* HEART EXPLOSION */
 function triggerHeartExplosion() {
     const heart = document.querySelector(".heart");
     heart.classList.add("heart-explode");
 
-    // remove class after animation so it can be used again if needed
     heart.addEventListener(
         "animationend",
         () => {
@@ -106,20 +102,17 @@ function showCatVideo() {
     const heart = document.querySelector(".heart");
     const rect = heart.getBoundingClientRect();
 
-    // position popup so it feels like it's coming from the heart
     const centerX = rect.left + rect.width / 2;
     const bottomY = rect.bottom;
 
     popup.style.left = `${centerX}px`;
     popup.style.top = `${bottomY + 20}px`;
 
-    // reset and show
     popup.classList.add("show");
     video.currentTime = 0;
     video.muted = false;
     video.play();
 
-    // hide after 4 seconds
     setTimeout(() => {
         popup.classList.remove("show");
         video.pause();
@@ -151,5 +144,4 @@ function createBackgroundHeart() {
     setTimeout(() => heart.remove(), 6000);
 }
 
-// a bit faster appearance than before
 setInterval(createBackgroundHeart, 800);

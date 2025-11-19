@@ -4,7 +4,7 @@ body {
     text-align: center;
     margin: 0;
     padding-top: 80px;
-    overflow: hidden; /* so floating hearts don't create scrollbars */
+    overflow: hidden;
 }
 
 /* HEART */
@@ -21,7 +21,7 @@ body {
     transform: scale(1.15);
 }
 
-/* explosion animation on first click */
+/* First click heart explosion */
 .heart-explode {
     animation: heartExplode 0.45s ease-out;
 }
@@ -118,7 +118,7 @@ body {
     }
 }
 
-/* BURST HEARTS FROM CENTER HEART */
+/* BURST HEARTS FROM CENTER */
 .burst-heart {
     position: fixed;
     color: #000;
@@ -137,4 +137,27 @@ body {
         opacity: 0;
         transform: translate(var(--dx), var(--dy)) scale(0.4);
     }
+}
+
+/* ALYSSA NAME ANIMATION */
+.name-reveal {
+    font-family: "Brush Script MT", cursive;
+    font-size: 42px;
+    color: #b3006b;
+    opacity: 0;
+    margin-top: 20px;
+    text-shadow: 0 0 8px rgba(255, 100, 200, 0.6),
+                 0 0 15px rgba(255, 150, 220, 0.4);
+    transition: opacity 1.2s ease;
+    animation: floatName 3s ease-in-out infinite;
+}
+
+@keyframes floatName {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}
+
+.name-reveal.show {
+    opacity: 1;
 }
