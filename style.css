@@ -83,14 +83,8 @@ body {
 }
 
 @keyframes cursorHeart {
-    0% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: translate(-50%, -140%) scale(0.6);
-    }
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -140%) scale(0.6); }
 }
 
 /* FLOATING BACKGROUND HEARTS */
@@ -105,17 +99,9 @@ body {
 }
 
 @keyframes floatHeart {
-    0% {
-        transform: translateY(0) scale(0.8);
-        opacity: 0;
-    }
-    15% {
-        opacity: 0.4;
-    }
-    100% {
-        transform: translateY(-110vh) scale(1.1);
-        opacity: 0;
-    }
+    0%   { transform: translateY(0) scale(0.8); opacity: 0; }
+    15%  { opacity: 0.4; }
+    100% { transform: translateY(-110vh) scale(1.1); opacity: 0; }
 }
 
 /* BURST HEARTS FROM CENTER */
@@ -129,14 +115,8 @@ body {
 }
 
 @keyframes burst {
-    0% {
-        opacity: 1;
-        transform: translate(0, 0) scale(0.9);
-    }
-    100% {
-        opacity: 0;
-        transform: translate(var(--dx), var(--dy)) scale(0.4);
-    }
+    0%   { opacity: 1; transform: translate(0, 0) scale(0.9); }
+    100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.4); }
 }
 
 /* ALYSSA NAME ANIMATION */
@@ -146,18 +126,19 @@ body {
     color: #b3006b;
     opacity: 0;
     margin-top: 20px;
-    text-shadow: 0 0 8px rgba(255, 100, 200, 0.6),
-                 0 0 15px rgba(255, 150, 220, 0.4);
+    text-shadow: 
+        0 0 8px rgba(255, 100, 200, 0.6),
+        0 0 15px rgba(255, 150, 220, 0.4);
     transition: opacity 1.2s ease;
-    animation: floatName 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.name-reveal.show {
+    opacity: 1;
 }
 
 @keyframes floatName {
     0%   { transform: translateY(0px); }
     50%  { transform: translateY(-6px); }
     100% { transform: translateY(0px); }
-}
-
-.name-reveal.show {
-    opacity: 1;
 }

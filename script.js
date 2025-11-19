@@ -39,11 +39,18 @@ function handleClick() {
     count++;
 
     const msg = document.getElementById("message");
+    const name = document.getElementById("nameReveal");
 
     if (count === 1) {
         msg.textContent = firstMessage;
 
-        document.getElementById("nameReveal").classList.add("show");
+        // fade in Alyssa
+        name.classList.add("show");
+
+        // start floating after fade starts
+        setTimeout(() => {
+            name.style.animation = "floatName 3s ease-in-out infinite";
+        }, 200);
 
         triggerHeartExplosion();
         return;
