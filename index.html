@@ -4,54 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For You 💖</title>
-
-    <!-- Cursive font for Alyssa -->
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 
 <body>
-
-    <!-- FLOATING HEARTS -->
-    <div id="floating-hearts"></div>
-
-    <!-- CURSOR HEARTS -->
-    <div id="cursor-hearts"></div>
-
-    <!-- MAIN HEART -->
     <div class="heart" onclick="handleClick()">
         💖
         <span class="click-hint">click me</span>
     </div>
 
-    <!-- NAME -->
     <h1 id="name" class="hidden-name"></h1>
-
-    <!-- MESSAGE -->
     <p id="message" class="message"></p>
 
-    <!-- CAT VIDEO POPUP -->
+    <div id="floating-hearts"></div>
+    <div id="cursor-hearts"></div>
+
     <div id="cat-popup" class="cat-popup">
         <video id="cat-video" width="250" playsinline>
             <source src="cat.mp4" type="video/mp4">
         </video>
     </div>
 
-    <!-- CAT CAFÉ MAZE -->
-    <div id="maze-overlay" class="maze-overlay">
-        <div class="maze-box">
-            <h2 class="maze-title">cat café maze 🐈☕</h2>
-            <div id="maze-grid"></div>
-
-            <div class="maze-controls">
-                <button class="maze-btn" data-dir="up">⬆</button>
-                <div>
-                    <button class="maze-btn" data-dir="left">⬅</button>
-                    <button class="maze-btn" data-dir="down">⬇</button>
-                    <button class="maze-btn" data-dir="right">➡</button>
-                </div>
-            </div>
-
-            <p id="maze-message" class="maze-message"></p>
-            <button id="maze-close" class
+    <script src="script.js"></script>
+</body>
+</html>
