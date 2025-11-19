@@ -123,7 +123,7 @@ function showCatVideo() {
     setTimeout(() => {
         popup.classList.remove("show");
         video.pause();
-    }, 4000);
+    }, 8000);
 }
 
 /* CURSOR HEART TRAIL */
