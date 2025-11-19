@@ -1,5 +1,5 @@
 let count = 0;
-const nameText = "Alyssa 💕";
+const nameText = "Alyssa";
 
 const firstMessage =
     "I wrote all this just to say… you mean more to me than you know. 💌";
