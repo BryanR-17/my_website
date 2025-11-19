@@ -7,30 +7,30 @@ let firstClickDone = false;
 
 const compliments = [
     "You are my home.",
-    "Your smile is my favorite place.",
-    "You make life softer. 🌸",
-    "You make everything feel lighter.",
-    "You’re a blessing I didn’t expect. 💗",
+    "Your smile is the cutest.",
+    "You make life better. 🌸",
+    "You are my everything.",
+    "You’re my biggest blessing. 💗",
     "You make bad days disappear.",
-    "Your laugh is everything. 😭❤️",
-    "You are sunshine in human form. ☀️",
-    "I adore your heart.",
+    "I am so proud of you. ❤️",
+    "You are my sunshine. ☀️",
+    "I adore you.",
     "You don’t realize how amazing you are.",
     "You make me want to be better.",
     "You make everything warmer. 🌷",
-    "Your presence feels like peace.",
+    "Your presence brings me peace.",
     "You have the sweetest soul.",
-    "You’re someone I never want to lose.",
+    "You’re the swaggiest.",
     "You make silence comfortable. 🤍",
-    "You are loved more than you know.",
-    "Your energy is unmatched. ✨",
-    "You make the world feel softer.",
-    "You deserve every good thing.",
-    "You make life feel romantic. 💞",
-    "You’re my favorite person.",
+    "You are the love of my life.",
+    "You’re so rad. ✨",
+    "You deserve everything.",
+    "Te amo muchisimo.",
+    "You make life worth livin. 💞",
+    "I would die for you.",
     "You’re beautiful without even trying.",
-    "You feel like destiny.",
-    "You make my heart rest.",
+    "You are my world.",
+    "You give me butterflies.",
     "You're the cutest human alive.",
     "Every part of you is special.",
     "You're my safe place."
@@ -39,7 +39,7 @@ const compliments = [
 
 /* ------------------ HEART CLICK MAIN LOGIC ------------------- */
 function heartClicked() {
-    createSparkles(); // ✨ sparkle effect
+    createSparkles(); // sparkle burst ✨
 
     if (!firstClickDone) {
         firstClickDone = true;
@@ -77,12 +77,13 @@ function showCompliment() {
 
     msg.classList.remove("show");
     msg.textContent = random;
+
     setTimeout(() => msg.classList.add("show"), 20);
 }
 
 
 /* ----------------------------------------
-   FLOATING HEART PARTICLES
+   FLOATING CURSOR HEART PARTICLES
 -----------------------------------------*/
 
 const heartCanvas = document.getElementById("heartCanvas");
@@ -131,7 +132,51 @@ drawHearts();
 
 
 /* ----------------------------------------
-   ✨ SPARKLES ON HEART CLICK
+   FLOATING BACKGROUND HEARTS
+-----------------------------------------*/
+
+const bgCanvas = document.getElementById("bgHeartsCanvas");
+const bgCtx = bgCanvas.getContext("2d");
+
+bgCanvas.width = window.innerWidth;
+bgCanvas.height = window.innerHeight;
+
+let bgHearts = [];
+
+setInterval(() => {
+    bgHearts.push({
+        x: Math.random() * bgCanvas.width,
+        y: bgCanvas.height + 30,
+        size: Math.random() * 18 + 8,
+        speedY: Math.random() * 0.5 + 0.3,
+        opacity: Math.random() * 0.5 + 0.3
+    });
+}, 600);
+
+function drawBackgroundHearts() {
+    bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+
+    for (let i = bgHearts.length - 1; i >= 0; i--) {
+        let h = bgHearts[i];
+
+        bgCtx.globalAlpha = h.opacity;
+        bgCtx.fillStyle = "rgba(255, 120, 160)";
+        bgCtx.font = `${h.size}px serif`;
+        bgCtx.fillText("❤", h.x, h.y);
+
+        h.y -= h.speedY;
+
+        if (h.y < -40) bgHearts.splice(i, 1);
+    }
+
+    requestAnimationFrame(drawBackgroundHearts);
+}
+
+drawBackgroundHearts();
+
+
+/* ----------------------------------------
+   SPARKLES ON CLICK
 -----------------------------------------*/
 
 const sparkleCanvas = document.getElementById("sparkleCanvas");
