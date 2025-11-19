@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>For You 💖</title>
+    <title>For You 💌</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="floating-hearts"></div>
+    <!-- Floating hearts follow cursor -->
+    <canvas id="heartCanvas"></canvas>
 
     <div class="container">
-        <div class="heart" onclick="revealMessage()">❤️</div>
 
+        <!-- First click -->
+        <div class="big-heart" onclick="revealMessage()">💖</div>
+
+        <!-- First message -->
         <p id="message" class="hidden"></p>
+
+        <!-- Second click -->
+        <button id="complimentBtn" class="hidden" onclick="showCompliment()">
+            Click me again 💕
+        </button>
+
+        <!-- Compliments appear here -->
+        <p id="compliment" class="compliment-text hidden"></p>
+
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
-
-
