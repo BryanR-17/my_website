@@ -39,28 +39,24 @@ function handleClick() {
     count++;
 
     const msg = document.getElementById("message");
-    const nameBox = document.getElementById("name");
 
-    // FIRST CLICK → reveal name letter by letter + special msg
     if (count === 1) {
         animateName(nameText);
         msg.textContent = firstMessage;
         return;
     }
 
-    // After first click, cycle compliments
     msg.textContent = messages[(count - 2) % messages.length];
 
-    // Show cat every 5 clicks
     if (count % 5 === 0) {
         showCatVideo();
     }
 }
 
-/* LETTER BY LETTER NAME ANIMATION */
+/* LETTER BY LETTER EFFECT */
 function animateName(text) {
     const nameBox = document.getElementById("name");
-    nameBox.innerHTML = ""; // clear
+    nameBox.innerHTML = "";
     let i = 0;
 
     function reveal() {
@@ -76,7 +72,7 @@ function animateName(text) {
             setTimeout(() => {
                 span.style.opacity = 1;
                 span.style.transform = "translateY(0)";
-            }, 50);
+            }, 40);
 
             i++;
             setTimeout(reveal, 120);
@@ -95,14 +91,13 @@ function showCatVideo() {
     video.muted = false;
     video.play();
 
-    // Hide after full 8 seconds
     setTimeout(() => {
         popup.classList.remove("show");
         video.pause();
-    }, 7000);
+    }, 6500);
 }
 
-/* --- FLOATING BACKGROUND HEARTS --- */
+/* FLOATING HEARTS */
 setInterval(() => {
     const container = document.getElementById("floating-hearts");
     const heart = document.createElement("div");
@@ -116,7 +111,7 @@ setInterval(() => {
     setTimeout(() => heart.remove(), 4000);
 }, 200);
 
-/* --- CURSOR HEART TRAIL --- */
+/* CURSOR TRAIL HEARTS */
 document.addEventListener("mousemove", (e) => {
     const trail = document.createElement("div");
     trail.classList.add("cursor-heart");

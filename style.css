@@ -1,6 +1,6 @@
 body {
     background: #ffdfee;
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: sans-serif;
     text-align: center;
     overflow-x: hidden;
     height: 100vh;
@@ -10,7 +10,7 @@ body {
 .heart {
     font-size: 80px;
     cursor: pointer;
-    margin-top: 70px;
+    margin-top: 80px;
     position: relative;
     display: inline-block;
     transition: transform 0.2s ease;
@@ -26,14 +26,13 @@ body {
     opacity: 0.8;
 }
 
-/* NAME ANIMATION */
+/* NAME — NOW BELOW HEART + CURSIVE + BIGGER */
 .hidden-name {
-    margin-top: 40px;
-    margin-bottom: 10px;
-    font-size: 55px;
+    margin-top: 15px;
+    font-size: 60px;
     font-family: "Pacifico", cursive;
     color: #b3006b;
-    height: 80px;
+    height: 90px;
     letter-spacing: 4px;
 }
 
@@ -63,7 +62,7 @@ body {
     opacity: 1;
 }
 
-/* FLOATING BLACK HEARTS BACKGROUND */
+/* FLOATING HEARTS */
 #floating-hearts {
     position: fixed;
     top: 0;
@@ -74,24 +73,6 @@ body {
     overflow: hidden;
 }
 
-/* cursor trailing hearts */
-#cursor-hearts {
-    position: fixed;
-    pointer-events: none;
-}
-.cursor-heart {
-    position: absolute;
-    font-size: 18px;
-    color: black;
-    animation: fade-up 0.8s linear forwards;
-}
-
-@keyframes fade-up {
-    from { opacity: 1; transform: translateY(0); }
-    to { opacity: 0; transform: translateY(-25px); }
-}
-
-/* floating bg hearts */
 .floating-heart {
     position: absolute;
     font-size: 20px;
@@ -101,4 +82,16 @@ body {
 @keyframes float {
     0% { transform: translateY(0); opacity: 1; }
     100% { transform: translateY(-120vh); opacity: 0; }
+}
+
+/* CURSOR HEARTS */
+.cursor-heart {
+    position: absolute;
+    font-size: 18px;
+    color: black;
+    animation: fade-up 0.8s linear forwards;
+}
+@keyframes fade-up {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-25px); }
 }
