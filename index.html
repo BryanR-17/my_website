@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For You 💖</title>
     <link rel="stylesheet" href="style.css">
-
-    <!-- Pretty Cursive Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- Her Name (COMPLETELY HIDDEN UNTIL FIRST CLICK) -->
-    <div id="name" class="name hidden"></div>
+    <!-- FLOATING BLACK HEARTS BACKGROUND -->
+    <div id="floating-hearts"></div>
+
+    <!-- CURSOR TRAIL HEARTS -->
+    <div id="cursor-hearts"></div>
+
+    <!-- NAME (HIDDEN AT FIRST) -->
+    <h1 id="name" class="hidden-name"></h1>
 
     <!-- HEART BUTTON -->
     <div class="heart" onclick="handleClick()">
@@ -24,7 +27,7 @@
     <!-- MESSAGE -->
     <p id="message" class="message"></p>
 
-    <!-- CAT VIDEO POPUP -->
+    <!-- CAT VIDEO -->
     <div id="cat-popup" class="cat-popup">
         <video id="cat-video" width="250" playsinline>
             <source src="cat.mp4" type="video/mp4">
@@ -32,5 +35,6 @@
     </div>
 
     <script src="script.js"></script>
+
 </body>
 </html>

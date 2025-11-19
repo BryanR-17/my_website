@@ -1,4 +1,5 @@
 let count = 0;
+const nameText = "Alyssa 💕";
 
 const firstMessage =
     "I wrote all this just to say… you mean more to me than you know. 💌";
@@ -8,68 +9,83 @@ const messages = [
     "Your smile is the cutest.",
     "You make life better. 🌸",
     "You are my everything.",
-    "You're my biggest blessing. 💗",
+    "You're my biggest blessing. 💖",
     "You make bad days disappear.",
     "I am so proud of you. ❤️",
     "You are my sunshine. 🌞",
     "I adore you.",
-    "You don't realize how amazing you are.",
+    "You don’t realize how amazing you are.",
     "You make me want to be better.",
     "You make everything warmer. 💕",
     "Your presence brings me peace.",
     "You have the sweetest soul.",
-    "You’re the swaggiest.",
-    "You make silence comfortable. 💜",
-    "You are the love of my life.",
+    "You're the swaggiest.",
+    "You make silence comfortable. 🤍",
+    "You're the love of my life.",
     "You're so rad. ✨",
     "You deserve everything.",
-    "Te amo muchísimo.",
-    "You make life worth livin’. 💞",
+    "Te amo muchisimo.",
+    "You make life worth livin. 💓",
     "I would die for you.",
     "You're beautiful without even trying.",
     "You are my world.",
-    "You give me butterflies. 🦋",
+    "You give me butterflies.",
     "You're the cutest human alive.",
     "Every part of you is special.",
     "You're my safe place."
 ];
 
-// Build Alyssa letter-by-letter ON FIRST CLICK (not before)
-function revealName() {
-    const nameDiv = document.getElementById("name");
-    const name = "Alyssa";
-
-    nameDiv.innerHTML = "";         // reset
-    nameDiv.classList.remove("hidden");
-
-    [...name].forEach((letter, i) => {
-        let span = document.createElement("span");
-        span.textContent = letter;
-        span.style.animationDelay = (i * 0.25) + "s"; // stagger letters
-        nameDiv.appendChild(span);
-    });
-}
-
 function handleClick() {
     count++;
-    const msg = document.getElementById("message");
 
-    // FIRST CLICK — reveal name AND message
+    const msg = document.getElementById("message");
+    const nameBox = document.getElementById("name");
+
+    // FIRST CLICK → reveal name letter by letter + special msg
     if (count === 1) {
-        revealName();
+        animateName(nameText);
         msg.textContent = firstMessage;
         return;
     }
 
-    // After first click: cycle compliments
+    // After first click, cycle compliments
     msg.textContent = messages[(count - 2) % messages.length];
 
-    // Every 5 clicks → cat video
+    // Show cat every 5 clicks
     if (count % 5 === 0) {
         showCatVideo();
     }
 }
 
+/* LETTER BY LETTER NAME ANIMATION */
+function animateName(text) {
+    const nameBox = document.getElementById("name");
+    nameBox.innerHTML = ""; // clear
+    let i = 0;
+
+    function reveal() {
+        if (i < text.length) {
+            let span = document.createElement("span");
+            span.textContent = text[i];
+            span.style.opacity = 0;
+            span.style.display = "inline-block";
+            span.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+            span.style.transform = "translateY(10px)";
+            nameBox.appendChild(span);
+
+            setTimeout(() => {
+                span.style.opacity = 1;
+                span.style.transform = "translateY(0)";
+            }, 50);
+
+            i++;
+            setTimeout(reveal, 120);
+        }
+    }
+    reveal();
+}
+
+/* CAT VIDEO */
 function showCatVideo() {
     const popup = document.getElementById("cat-popup");
     const video = document.getElementById("cat-video");
@@ -79,8 +95,36 @@ function showCatVideo() {
     video.muted = false;
     video.play();
 
+    // Hide after full 8 seconds
     setTimeout(() => {
         popup.classList.remove("show");
         video.pause();
-    }, 7000); // full 7 seconds
+    }, 7000);
 }
+
+/* --- FLOATING BACKGROUND HEARTS --- */
+setInterval(() => {
+    const container = document.getElementById("floating-hearts");
+    const heart = document.createElement("div");
+    heart.classList.add("floating-heart");
+    heart.textContent = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.top = "100vh";
+    heart.style.fontSize = (15 + Math.random() * 15) + "px";
+    container.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 4000);
+}, 200);
+
+/* --- CURSOR HEART TRAIL --- */
+document.addEventListener("mousemove", (e) => {
+    const trail = document.createElement("div");
+    trail.classList.add("cursor-heart");
+    trail.textContent = "❤";
+    trail.style.left = e.pageX + "px";
+    trail.style.top = e.pageY + "px";
+
+    document.getElementById("cursor-hearts").appendChild(trail);
+
+    setTimeout(() => trail.remove(), 800);
+});
