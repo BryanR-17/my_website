@@ -4,6 +4,7 @@ body {
     text-align: center;
     margin: 0;
     padding-top: 80px;
+    overflow: hidden; /* so floating hearts don't create scrollbars */
 }
 
 /* HEART */
@@ -18,6 +19,18 @@ body {
 
 .heart:hover {
     transform: scale(1.15);
+}
+
+/* explosion animation on first click */
+.heart-explode {
+    animation: heartExplode 0.45s ease-out;
+}
+
+@keyframes heartExplode {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.25); }
+    70%  { transform: scale(0.9); }
+    100% { transform: scale(1); }
 }
 
 /* tiny "click me" */
@@ -39,19 +52,89 @@ body {
 
 /* CAT VIDEO POPUP */
 .cat-popup {
-    position: absolute;
-    top: 140px;
+    position: fixed;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -20%) scale(0.4);
     background: white;
-    padding: 10px;
+    padding: 8px;
     border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    z-index: 15;
 }
 
 .cat-popup.show {
     opacity: 1;
+    transform: translate(-50%, -20%) scale(1);
+}
+
+/* CURSOR HEARTS */
+.cursor-heart {
+    position: fixed;
+    pointer-events: none;
+    color: #000;
+    font-size: 18px;
+    transform: translate(-50%, -50%);
+    animation: cursorHeart 0.9s ease-out forwards;
+    z-index: 12;
+}
+
+@keyframes cursorHeart {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -140%) scale(0.6);
+    }
+}
+
+/* FLOATING BACKGROUND HEARTS */
+.bg-heart {
+    position: fixed;
+    bottom: -40px;
+    color: #000;
+    pointer-events: none;
+    opacity: 0;
+    animation: floatHeart 6s linear forwards;
+    z-index: 0;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(-110vh) scale(1.1);
+        opacity: 0;
+    }
+}
+
+/* BURST HEARTS FROM CENTER HEART */
+.burst-heart {
+    position: fixed;
+    color: #000;
+    font-size: 20px;
+    pointer-events: none;
+    animation: burst 0.8s ease-out forwards;
+    z-index: 14;
+}
+
+@keyframes burst {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(0.9);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--dx), var(--dy)) scale(0.4);
+    }
 }
