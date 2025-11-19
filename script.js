@@ -13,7 +13,7 @@ const messages = [
     "I am so proud of you. ❤️",
     "You are my sunshine. 🌞",
     "I adore you.",
-    "You don’t realize how amazing you are.",
+    "You don't realize how amazing you are.",
     "You make me want to be better.",
     "You make everything warmer. 💕",
     "Your presence brings me peace.",
@@ -34,38 +34,34 @@ const messages = [
     "You're my safe place."
 ];
 
-// turn "Alyssa" into spans for letter animation
-function formatName() {
+// Build Alyssa letter-by-letter ON FIRST CLICK (not before)
+function revealName() {
     const nameDiv = document.getElementById("name");
-    const nameText = "Alyssa";
-    nameDiv.innerHTML = "";
+    const name = "Alyssa";
 
-    [...nameText].forEach((letter, i) => {
+    nameDiv.innerHTML = "";         // reset
+    nameDiv.classList.remove("hidden");
+
+    [...name].forEach((letter, i) => {
         let span = document.createElement("span");
-        span.style.animationDelay = (i * 0.2) + "s";
         span.textContent = letter;
+        span.style.animationDelay = (i * 0.25) + "s"; // stagger letters
         nameDiv.appendChild(span);
     });
 }
 
-formatName();
-
 function handleClick() {
     count++;
+    const msg = document.getElementById("message");
 
-    let msg = document.getElementById("message");
-
-    // FIRST CLICK → show name + first message
+    // FIRST CLICK — reveal name AND message
     if (count === 1) {
+        revealName();
         msg.textContent = firstMessage;
-
-        const nameDiv = document.getElementById("name");
-        nameDiv.classList.remove("hidden");
-
         return;
     }
 
-    // After first click → cycle compliments
+    // After first click: cycle compliments
     msg.textContent = messages[(count - 2) % messages.length];
 
     // Every 5 clicks → cat video
@@ -83,10 +79,8 @@ function showCatVideo() {
     video.muted = false;
     video.play();
 
-    // stay 8 seconds
     setTimeout(() => {
         popup.classList.remove("show");
         video.pause();
-    }, 7000);
+    }, 7000); // full 7 seconds
 }
-
