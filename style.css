@@ -43,9 +43,9 @@ body {
 .message {
     font-size: 22px;
     color: #b3006b;
-    margin-top: 25px;
+    margin-top: 80px;   /* ⭐ moved farther down */
     min-height: 30px;
-    text-align: center;   /* ⭐ added this so the quotes are centered */
+    text-align: center; /* ⭐ centered the quotes */
 }
 
 /* CAT VIDEO POPUP */
@@ -73,13 +73,16 @@ body {
     left: 50%;
     transform: translateX(-50%);
     font-family: "Brush Script MT", cursive;
-    font-size: 50px;
+    font-size: 55px;    /* ⭐ bigger cursive name */
     color: #b3006b;
     display: flex;
     gap: 5px;
     opacity: 0;
     transition: opacity 0.5s ease;
+
+    padding-bottom: 40px;  /* ⭐ adds spacing between name & quote */
 }
+
 .letter {
     opacity: 0;
     transform: translateY(10px);
