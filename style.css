@@ -1,8 +1,21 @@
+html, body {
+    height: 100%;
+}
+
 body {
     background: #ffd9e8;
     margin: 0;
     overflow-x: hidden;
     font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main centered wrapper (add this div around your content in HTML) */
+.center-wrapper {
+    text-align: center;
+    padding: 20px;
 }
 
 /* FLOATING HEARTS */
@@ -20,12 +33,12 @@ body {
 
 /* HEART BUTTON */
 .heart {
-    font-size: 80px;
+    font-size: clamp(48px, 8vw, 72px);
     cursor: pointer;
     user-select: none;
     position: relative;
     text-align: center;
-    margin-top: 80px;
+    margin-top: 0;
     transition: transform 0.2s ease;
 }
 .heart:hover {
@@ -34,32 +47,31 @@ body {
 
 .click-hint {
     display: block;
-    font-size: 10px;
-    margin-top: -10px;
+    font-size: 11px;
+    margin-top: 4px;
     opacity: 0.8;
 }
 
 /* MESSAGE */
 .message {
-    font-size: 22px;
+    font-size: clamp(18px, 3vw, 22px);
     color: #b3006b;
-    margin-top: 80px;   /* ⭐ moved farther down */
+    margin-top: 16px;
     min-height: 30px;
-    text-align: center; /* ⭐ centered the quotes */
+    text-align: center;
 }
 
 /* CAT VIDEO POPUP */
 .cat-popup {
-    position: absolute;
-    top: 140px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    margin: 16px auto 0;
     background: white;
     padding: 10px;
     border-radius: 12px;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
+    max-width: 260px;
 }
 .cat-popup.show {
     opacity: 1;
@@ -68,19 +80,17 @@ body {
 
 /* NAME (cursive animation) */
 #name-container {
-    position: absolute;
-    top: 180px;
-    left: 50%;
-    transform: translateX(-50%);
     font-family: "Brush Script MT", cursive;
-    font-size: 55px;    /* ⭐ bigger cursive name */
+    font-size: clamp(32px, 5vw, 48px);
     color: #b3006b;
     display: flex;
+    justify-content: center;
     gap: 5px;
     opacity: 0;
     transition: opacity 0.5s ease;
-
-    padding-bottom: 40px;  /* ⭐ adds spacing between name & quote */
+    margin-bottom: 8px;
+    position: static;
+    transform: none;
 }
 
 .letter {
@@ -109,20 +119,20 @@ body {
 
 .maze-grid {
     display: grid;
-    grid-template-columns: repeat(10, 40px);
-    grid-template-rows: repeat(10, 40px);
+    grid-template-columns: repeat(10, 32px);
+    grid-template-rows: repeat(10, 32px);
     gap: 2px;
 }
 
 .maze-cell {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     background: white;
     border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 .maze-wall {
@@ -130,9 +140,16 @@ body {
 }
 
 .maze-player {
-    font-size: 28px;
+    font-size: 24px;
 }
 
 .maze-goal {
-    font-size: 28px;
+    font-size: 24px;
+}
+
+/* Optional: slightly tweak layout on very small screens */
+@media (max-width: 480px) {
+    .center-wrapper {
+        padding: 12px;
+    }
 }
