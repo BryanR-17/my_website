@@ -55,7 +55,7 @@ body {
 
 /* MESSAGE – smaller */
 .message {
-    font-size: clamp(26px, 3vw, 34px);
+    font-size: clamp(56px, 3vw, 64px);
     color: #b3006b;
     margin-top: 32px;
     min-height: 44px;
