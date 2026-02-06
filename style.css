@@ -62,22 +62,30 @@ body {
     text-align: center;
 }
 
-/* CAT VIDEO POPUP – much larger */
+/* CAT VIDEO POPUP – no own background or padding */
 .cat-popup {
     position: relative;
     margin: 60px auto 0;
     background: transparent;
-    padding: 32px;
-    border-radius: 24px;
+    padding: 0;              /* was 32px */
+    border-radius: 0;        /* was 24px */
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
-    max-width: 720px;
+    max-width: none;
 }
 .cat-popup.show {
     opacity: 1;
     pointer-events: auto;
 }
+
+/* Make sure video itself has no background/border */
+#cat-video {
+    display: block;
+    background: transparent;
+    border: none;
+}
+
 
 /* NAME (cursive animation) – even bigger again */
 #name-container {
