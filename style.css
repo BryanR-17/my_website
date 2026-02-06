@@ -21,7 +21,7 @@ body {
 /* FLOATING HEARTS */
 .heart-float {
     position: fixed;
-    font-size: 14px;
+    font-size: 24px;
     color: black;
     animation: floatUp 2s linear forwards;
     pointer-events: none;
@@ -33,7 +33,7 @@ body {
 
 /* HEART BUTTON – bigger */
 .heart {
-    font-size: clamp(72px, 10vw, 110px);
+    font-size: clamp(100px, 10vw, 110px);
     cursor: pointer;
     user-select: none;
     position: relative;
@@ -54,7 +54,7 @@ body {
 
 /* MESSAGE – bigger */
 .message {
-    font-size: clamp(22px, 3.2vw, 28px);
+    font-size: clamp(32px, 3.2vw, 28px);
     color: #b3006b;
     margin-top: 20px;
     min-height: 36px;
@@ -81,7 +81,7 @@ body {
 /* NAME (cursive animation) – bigger */
 #name-container {
     font-family: "Brush Script MT", cursive;
-    font-size: clamp(42px, 5.5vw, 64px);
+    font-size: clamp(52px, 5.5vw, 64px);
     color: #b3006b;
     display: flex;
     justify-content: center;
@@ -132,7 +132,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 22px;
+    font-size: 32px;
 }
 
 .maze-wall {
