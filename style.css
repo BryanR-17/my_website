@@ -73,6 +73,8 @@ body {
     pointer-events: none;
     transition: opacity 0.3s ease;
     max-width: none;
+    display: flex;
+    justify-content: center;
 }
 .cat-popup.show {
     opacity: 1;
