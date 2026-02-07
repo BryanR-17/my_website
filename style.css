@@ -171,9 +171,9 @@ body {
 /* base style for Virgo stars – hidden at first */
 .virgo-heart {
     position: absolute;
-    font-size: 16px;
-    color: rgba(0, 0, 0, 0.22);
-    text-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.35);
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
     opacity: 0;
     transform: scale(0.5);
 }
@@ -185,7 +185,7 @@ body {
 
 @keyframes virgoTwinkle {
     0% { opacity: 0.4; transform: scale(1); }
-    100% { opacity: 1; transform: scale(1.15); }
+    100% { opacity: 1; transform: scale(1.2); }
 }
 
 /* positions to roughly draw Virgo */
@@ -199,7 +199,7 @@ body {
 .virgo-heart.h7 { top: 36%; left: 60%; }
 .virgo-heart.h8 { top: 43%; left: 64%; }
 
-.virgo-heart.h9 { top: 52%; left: 51%; font-size: 22px; color: rgba(0, 0, 0, 0.5); }
+.virgo-heart.h9 { top: 52%; left: 51%; font-size: 32px; color: rgba(0, 0, 0, 0.55); }
 
 /* Optional: slightly tweak layout on very small screens */
 @media (max-width: 480px) {
