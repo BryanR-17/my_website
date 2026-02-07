@@ -168,12 +168,12 @@ body {
     overflow: hidden;
 }
 
-/* base style for Virgo stars – hidden at first */
+/* base style for Virgo stars – bigger & darker */
 .virgo-heart {
     position: absolute;
-    font-size: 30px;
+    font-size: 26px;
     color: rgba(0, 0, 0, 0.35);
-    text-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
     opacity: 0;
     transform: scale(0.5);
 }
@@ -184,22 +184,31 @@ body {
 }
 
 @keyframes virgoTwinkle {
-    0% { opacity: 0.4; transform: scale(1); }
+    0% { opacity: 0.5; transform: scale(1); }
     100% { opacity: 1; transform: scale(1.2); }
 }
 
-/* positions to roughly draw Virgo */
-.virgo-heart.h1 { top: 15%; left: 50%; }
-.virgo-heart.h2 { top: 22%; left: 47%; }
-.virgo-heart.h3 { top: 29%; left: 44%; }
-.virgo-heart.h4 { top: 36%; left: 41%; }
-.virgo-heart.h5 { top: 43%; left: 38%; }
+/* positions to roughly draw Virgo with 12 hearts */
+.virgo-heart.h1  { top: 12%; left: 50%; }
+.virgo-heart.h2  { top: 18%; left: 46%; }
+.virgo-heart.h3  { top: 24%; left: 42%; }
+.virgo-heart.h4  { top: 30%; left: 38%; }
+.virgo-heart.h5  { top: 36%; left: 35%; }
 
-.virgo-heart.h6 { top: 29%; left: 56%; }
-.virgo-heart.h7 { top: 36%; left: 60%; }
-.virgo-heart.h8 { top: 43%; left: 64%; }
+.virgo-heart.h6  { top: 24%; left: 58%; }
+.virgo-heart.h7  { top: 30%; left: 62%; }
+.virgo-heart.h8  { top: 36%; left: 66%; }
 
-.virgo-heart.h9 { top: 52%; left: 51%; font-size: 32px; color: rgba(0, 0, 0, 0.55); }
+.virgo-heart.h9  { top: 44%; left: 52%; }
+.virgo-heart.h10 { top: 50%; left: 48%; }
+.virgo-heart.h11 { top: 56%; left: 44%; }
+.virgo-heart.h12 {
+    top: 62%;
+    left: 40%;
+    font-size: 32px;                /* brightest “Spica-like” star */
+    color: rgba(0, 0, 0, 0.55);
+}
+
 
 /* Optional: slightly tweak layout on very small screens */
 @media (max-width: 480px) {
