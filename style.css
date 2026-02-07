@@ -185,54 +185,60 @@ body {
     100% { opacity: 1;   transform: scale(1.2); }
 }
 
-/* compact Virgo shape above and around the big heart */
-.virgo-heart.h1  { top: 10%; left: 50%; }
-.virgo-heart.h2  { top: 16%; left: 46%; }
-.virgo-heart.h3  { top: 22%; left: 42%; }
-.virgo-heart.h4  { top: 28%; left: 38%; }
-.virgo-heart.h5  { top: 34%; left: 34%; }
+/* Virgo shape scaled to sit above and around the big heart */
+.virgo-heart.h1  { top: 10%; left: 20%; }  /* far left */
+.virgo-heart.h2  { top: 14%; left: 28%; }
+.virgo-heart.h3  { top: 18%; left: 36%; }
+.virgo-heart.h4  { top: 22%; left: 44%; }  /* central “kink” */
+.virgo-heart.h5  { top: 30%; left: 44%; }
 
-.virgo-heart.h6  { top: 22%; left: 58%; }
-.virgo-heart.h7  { top: 28%; left: 62%; }
-.virgo-heart.h8  { top: 34%; left: 66%; }
+.virgo-heart.h6  { top: 20%; left: 52%; }
+.virgo-heart.h7  { top: 12%; left: 52%; }  /* vertical up */
 
-.virgo-heart.h9  { top: 40%; left: 52%; }
-.virgo-heart.h10 { top: 46%; left: 48%; }
-.virgo-heart.h11 { top: 52%; left: 44%; }
+.virgo-heart.h8  { top: 30%; left: 58%; }
+.virgo-heart.h9  { top: 34%; left: 66%; }
+.virgo-heart.h10 { top: 34%; left: 74%; }
+.virgo-heart.h11 { top: 30%; left: 82%; }
 .virgo-heart.h12 {
-    top: 58%;
-    left: 40%;
+    top: 26%;
+    left: 90%;
     font-size: 48px;
     color: rgba(0, 0, 0, 0.6);
 }
 
-/* connecting lines */
-.virgo-line {
+/* line from each star toward the next */
+.virgo-heart::before {
+    content: "";
     position: absolute;
+    top: 50%;
+    left: 50%;
     height: 2px;
     background: rgba(0, 0, 0, 0.25);
     transform-origin: 0 50%;
-    pointer-events: none;
-    z-index: 0;
 }
 
-/* spine: h1–h5 */
-.virgo-line.l1  { top: 11%; left: 50%; width: 6%;  transform: rotate(210deg); }
-.virgo-line.l2  { top: 17%; left: 46%; width: 6%;  transform: rotate(210deg); }
-.virgo-line.l3  { top: 23%; left: 42%; width: 6%;  transform: rotate(210deg); }
-.virgo-line.l4  { top: 29%; left: 38%; width: 6%;  transform: rotate(210deg); }
+/* left chain h1→h2→h3→h4 */
+.virgo-heart.h1::before { width: 90px;  transform: rotate(15deg); }
+.virgo-heart.h2::before { width: 90px;  transform: rotate(15deg); }
+.virgo-heart.h3::before { width: 90px;  transform: rotate(15deg); }
 
-/* right arm: h3–h6–h7–h8 */
-.virgo-line.l5  { top: 23%; left: 44%; width: 12%; transform: rotate(-20deg); }
-.virgo-line.l6  { top: 24%; left: 58%; width: 6%;  transform: rotate(70deg); }
-.virgo-line.l7  { top: 30%; left: 62%; width: 6%;  transform: rotate(15deg); }
+/* kink + vertical h4→h5 & h4→h6→h7 */
+.virgo-heart.h4::before { width: 70px;  transform: rotate(90deg); }   /* up to h7 area */
+.virgo-heart.h5::before { width: 70px;  transform: rotate(0deg); }    /* to h8 */
 
-/* tail: h5–h9–h10–h11–h12 */
-.virgo-line.l8  { top: 35%; left: 36%; width: 18%; transform: rotate(10deg); }
-.virgo-line.l9  { top: 41%; left: 52%; width: 6%;  transform: rotate(200deg); }
-.virgo-line.l10 { top: 47%; left: 48%; width: 6%;  transform: rotate(200deg); }
-.virgo-line.l11 { top: 53%; left: 44%; width: 6%;  transform: rotate(210deg); }
-.virgo-line.l12 { top: 59%; left: 40%; width: 0%;  transform: rotate(0deg); } /* tiny or no line from h11–h12 */
+/* branch h6→h7 (vertical up) */
+.virgo-heart.h6::before { width: 80px;  transform: rotate(270deg); }
+
+/* right chain h8→h9→h10→h11→h12 */
+.virgo-heart.h8::before  { width: 90px;  transform: rotate(0deg); }
+.virgo-heart.h9::before  { width: 90px;  transform: rotate(0deg); }
+.virgo-heart.h10::before { width: 90px;  transform: rotate(0deg); }
+.virgo-heart.h11::before { width: 90px;  transform: rotate(0deg); }
+
+/* last star ends the chain */
+.virgo-heart.h7::before,
+.virgo-heart.h12::before { width: 0; }
+
 
 
 /* Optional: slightly tweak layout on very small screens */
