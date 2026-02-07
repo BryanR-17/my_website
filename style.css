@@ -171,9 +171,9 @@ body {
 /* base style for Virgo stars – bigger & darker */
 .virgo-heart {
     position: absolute;
-    font-size: 26px;
-    color: rgba(0, 0, 0, 0.35);
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
+    font-size: 46px;
+    color: rgba(0, 0, 0, 0.4);
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
     opacity: 0;
     transform: scale(0.5);
 }
@@ -185,7 +185,7 @@ body {
 
 @keyframes virgoTwinkle {
     0% { opacity: 0.5; transform: scale(1); }
-    100% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 1; transform: scale(1.25); }
 }
 
 /* positions to roughly draw Virgo with 12 hearts */
@@ -205,7 +205,7 @@ body {
 .virgo-heart.h12 {
     top: 62%;
     left: 40%;
-    font-size: 32px;                /* brightest “Spica-like” star */
+    font-size: 56px;                /* brightest “Spica-like” star */
     color: rgba(0, 0, 0, 0.55);
 }
 
