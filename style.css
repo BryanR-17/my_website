@@ -159,6 +159,24 @@ body {
     font-size: 80px;
 }
 
+/* TEMP: reference image overlay */
+#virgo-reference {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;       /* so you can still click your heart */
+    z-index: 9999;
+    opacity: 0.4;              /* semi-transparent so you see hearts too */
+}
+
+#virgo-reference img {
+    max-width: 70vw;
+    max-height: 70vh;
+}
+
+
 /* Virgo constellation background */
 #heart-background {
     position: fixed;
