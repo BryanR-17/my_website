@@ -7,15 +7,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
-    <!-- FLOATING NAME -->
+
+  <!-- Virgo heart constellation background -->
+  <div id="heart-background">
+    <div class="virgo-heart h1">♥</div>
+    <div class="virgo-heart h2">♥</div>
+    <div class="virgo-heart h3">♥</div>
+    <div class="virgo-heart h4">♥</div>
+    <div class="virgo-heart h5">♥</div>
+    <div class="virgo-heart h6">♥</div>
+    <div class="virgo-heart h7">♥</div>
+    <div class="virgo-heart h8">♥</div>
+    <div class="virgo-heart h9">♥</div>
+  </div>
+
+  <!-- MAIN CONTENT -->
   <div class="center-wrapper">
+    <!-- FLOATING NAME -->
     <div id="name-container"></div>
 
     <!-- HEART BUTTON -->
     <div class="heart" onclick="handleClick()">
-        💖
-        <span class="click-hint">click me</span>
+      💖
+      <span class="click-hint">click me</span>
     </div>
 
     <!-- MESSAGE TEXT -->
@@ -23,16 +37,17 @@
 
     <!-- CAT VIDEO POPUP -->
     <div id="cat-popup" class="cat-popup">
-        <video id="cat-video" width="250" playsinline>
-            <source src="cat-transparent.webm" type="video/webm">
-        </video>
+      <video id="cat-video" width="250" playsinline>
+        <source src="cat-transparent.webm" type="video/webm">
+      </video>
     </div>
+  </div>
 
-    <!-- MAZE (HIDDEN) -->
-    <div id="maze-wrapper" class="maze-wrapper hidden">
-        <div id="maze-grid" class="maze-grid"></div>
-    </div>
+  <!-- MAZE (HIDDEN) -->
+  <div id="maze-wrapper" class="maze-wrapper hidden">
+    <div id="maze-grid" class="maze-grid"></div>
+  </div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
