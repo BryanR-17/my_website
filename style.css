@@ -209,7 +209,33 @@ body {
     color: rgba(0, 0, 0, 0.55);
 }
 
+/* Virgo constellation connection lines */
+.virgo-line {
+    position: absolute;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.35);
+    opacity: 0.7;
+    transform-origin: 0 50%;
+    pointer-events: none;
+    z-index: 0; /* behind hearts */
+}
 
+/* spine: h1 → h2 → h3 → h4 → h5 */
+.virgo-line.l1  { top: 9%;  left: 52%; width: 7%;  transform: rotate(210deg); } /* h1–h2 */
+.virgo-line.l2  { top: 16%; left: 47%; width: 7%;  transform: rotate(210deg); } /* h2–h3 */
+.virgo-line.l3  { top: 23%; left: 42%; width: 7%;  transform: rotate(210deg); } /* h3–h4 */
+.virgo-line.l4  { top: 30%; left: 37%; width: 7%;  transform: rotate(210deg); } /* h4–h5 */
+
+/* right arm: h3 → h6 → h7 → h8 */
+.virgo-line.l5  { top: 22%; left: 44%; width: 18%; transform: rotate(-20deg); } /* h3–h6 */
+.virgo-line.l6  { top: 23%; left: 62%; width: 7%;  transform: rotate(70deg); }  /* h6–h7 */
+.virgo-line.l7  { top: 30%; left: 67%; width: 7%;  transform: rotate(15deg); }  /* h7–h8 */
+
+/* body / tail: h5 → h9 → h10 → h11 → h12 */
+.virgo-line.l8  { top: 38%; left: 35%; width: 22%; transform: rotate(10deg); }  /* h5–h9 */
+.virgo-line.l9  { top: 43%; left: 56%; width: 7%;  transform: rotate(200deg); } /* h9–h10 */
+.virgo-line.l10 { top: 49%; left: 51%; width: 7%;  transform: rotate(200deg); } /* h10–h11 */
+.virgo-line.l11 { top: 55%; left: 46%; width: 7%;  transform: rotate(210deg); } /* h11–h12 */
 
 /* Optional: slightly tweak layout on very small screens */
 @media (max-width: 480px) {
