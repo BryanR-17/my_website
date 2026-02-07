@@ -185,36 +185,36 @@ body {
     100% { opacity: 1;   transform: scale(1.2); }
 }
 
-/* 12-star Virgo, shaped like the diagram, centered above the big heart */
+/* 12-star Virgo – closer to the diagram, centered above the big heart */
 
 /* bottom-left arm into Spica */
-.virgo-heart.h1 { top: 56%; left: 24%; }
-.virgo-heart.h2 { top: 52%; left: 32%; }
-.virgo-heart.h3 { top: 48%; left: 40%; }
+.virgo-heart.h1 { top: 58%; left: 20%; }
+.virgo-heart.h2 { top: 54%; left: 28%; }
+.virgo-heart.h3 { top: 50%; left: 36%; }
 
-/* Spica (brightest, a bit above your big heart) */
+/* Spica (brightest, near center) */
 .virgo-heart.h4 {
-    top: 44%;
-    left: 50%;
+    top: 46%;
+    left: 48%;
     font-size: 52px;
     color: rgba(0, 0, 0, 0.6);
 }
 
-/* left middle arm above Spica */
-.virgo-heart.h5 { top: 38%; left: 42%; }
-.virgo-heart.h6 { top: 36%; left: 34%; }
+/* left middle arm above/left of Spica */
+.virgo-heart.h5 { top: 42%; left: 40%; }
+.virgo-heart.h6 { top: 40%; left: 32%; }
 
-/* central spine above Spica */
-.virgo-heart.h7 { top: 34%; left: 50%; }
-.virgo-heart.h8 { top: 26%; left: 50%; }
+/* central spine and Auva/Porrima area */
+.virgo-heart.h7 { top: 40%; left: 56%; }  /* small node above-right of Spica */
+.virgo-heart.h8 { top: 34%; left: 60%; }  /* Porrima-ish */
 
-/* upper-left (Vindemiatrix) */
-.virgo-heart.h9 { top: 22%; left: 42%; }
+/* upper-left branch: Auva → Vindemiatrix */
+.virgo-heart.h9  { top: 30%; left: 44%; } /* Auva */
+.virgo-heart.h10 { top: 24%; left: 38%; } /* Vindemiatrix */
 
-/* right chain from Spica */
-.virgo-heart.h10 { top: 40%; left: 60%; }
-.virgo-heart.h11 { top: 34%; left: 68%; }
-.virgo-heart.h12 { top: 24%; left: 76%; }
+/* right chain: Zaniah → Zavijah */
+.virgo-heart.h11 { top: 28%; left: 70%; } /* Zaniah */
+.virgo-heart.h12 { top: 20%; left: 78%; } /* Zavijah */
 
 /* connecting line from each star toward the next */
 .virgo-heart::before {
@@ -228,14 +228,14 @@ body {
 }
 
 /* bottom-left arm h1→h2→h3→h4 */
-.virgo-heart.h1::before  { width: 80px; transform: rotate(-10deg); }
-.virgo-heart.h2::before  { width: 80px; transform: rotate(-10deg); }
-.virgo-heart.h3::before  { width: 90px; transform: rotate(-10deg); }
+.virgo-heart.h1::before { width: 80px; transform: rotate(-10deg); }
+.virgo-heart.h2::before { width: 80px; transform: rotate(-10deg); }
+.virgo-heart.h3::before { width: 90px; transform: rotate(-10deg); }
 
-/* Spica up and left branches: use ::after for second branch */
+/* Spica branches: to h7 (up-right) and h5 (up-left) */
 .virgo-heart.h4::before {
-    width: 80px;
-    transform: rotate(-105deg); /* up to h7 */
+    width: 75px;
+    transform: rotate(-35deg);   /* to h7 */
 }
 .virgo-heart.h4::after {
     content: "";
@@ -245,35 +245,25 @@ body {
     height: 2px;
     background: rgba(0, 0, 0, 0.25);
     transform-origin: 0 50%;
-    width: 80px;
-    transform: rotate(210deg); /* down-left to h5 */
+    width: 75px;
+    transform: rotate(205deg);   /* to h5 */
 }
 
 /* left middle arm h5→h6 */
-.virgo-heart.h5::before { width: 80px; transform: rotate(200deg); }
-/* h6 ends that arm */
-.virgo-heart.h6::before { width: 0; }
+.virgo-heart.h5::before { width: 80px; transform: rotate(205deg); }
+.virgo-heart.h6::before { width: 0; }      /* end */
 
-/* spine h7→h8→h9 */
-.virgo-heart.h7::before { width: 80px; transform: rotate(-90deg); }
-.virgo-heart.h8::before { width: 70px; transform: rotate(-150deg); }
-/* h9 ends upper-left */
-.virgo-heart.h9::before { width: 0; }
+/* central/right spine h7→h8 and h8→h11 */
+.virgo-heart.h7::before { width: 70px; transform: rotate(-25deg); }  /* to h8 */
+.virgo-heart.h8::before { width: 80px; transform: rotate(-20deg); }  /* to h11 */
 
-/* right chain from Spica: h4→h10→h11→h12 */
-.virgo-heart.h10::before {
-    width: 80px;
-    transform: rotate(-10deg); /* to h11 */
-}
-.virgo-heart.h11::before {
-    width: 90px;
-    transform: rotate(-25deg); /* to h12 */
-}
-/* h12 ends chain */
-.virgo-heart.h12::before { width: 0; }
+/* upper-left branch: h8→h9→h10 */
+.virgo-heart.h9::before  { width: 70px; transform: rotate(-150deg); } /* to h10 */
+.virgo-heart.h10::before { width: 0; }                                /* end */
 
-
-
+/* right chain: h11→h12 */
+.virgo-heart.h11::before { width: 80px; transform: rotate(-25deg); }
+.virgo-heart.h12::before { width: 0; }      /* end */
 
 /* Optional: slightly tweak layout on very small screens */
 @media (max-width: 480px) {
